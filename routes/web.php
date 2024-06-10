@@ -34,6 +34,13 @@ Route::middleware('can:acceder-trabajador')->group(function () {
 
 Route::middleware('can:acceder-admin')->group(function () {
     Route::get('/admin', [UserController::class, 'admin'])->name('admin.index');
+
+    Route::middleware('users')->group(function () {
+        Route::get('/index', [UserController::class, 'index'])->name('index.users');
+        Route::patch('/update', [UserController::class, 'update'])->name('users.edit');
+        Route::delete('/destroy', [UserController::class, 'destroy'])->name('users.delete');
+    });
 });
+
 
 require __DIR__.'/auth.php';

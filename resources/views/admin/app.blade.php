@@ -76,8 +76,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             @can('acceder-admin')
                 <li class="nav-item">
-                    <!-- <a class="nav-link" href="{{ route('usuario.index') }}"> -->
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('index.users') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Usuarios</span></a>
                 </li>
