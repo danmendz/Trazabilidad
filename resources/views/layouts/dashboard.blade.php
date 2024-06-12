@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Panel de administrador</title>
+    <title>Panel</title>
+    <link rel="icon" href="{{ asset('images/icon-pgweb.jpeg') }}" type="image/png" sizes="32x32">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('libs/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -60,7 +61,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('pagina-principal') }}">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span></a>
             </li>
@@ -76,45 +77,34 @@
             <!-- Nav Item - Pages Collapse Menu -->
             @can('acceder-admin')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('index.users') }}">
-                        <i class="fas fa-fw fa-users"></i>
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                        <i class="fas fa-fw fa-user"></i>
                         <span>Usuarios</span></a>
                 </li>
             @endcan
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('proyectos.index') }}">
+                    <i class="fas fa-book-open"></i>
+                    <span>Proyectos</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('maquinas.index') }}">
                     <i class="fas fa-wrench"></i>
                     <span>Máquinas</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
-                    aria-expanded="true" aria-controls="collapseEvent">
-                    <i class="fas fa-book-open"></i>
-                    <span>Proyectos</span>
-                </a>
-                <div id="collapseEvent" class="collapse" aria-labelledby="headingEvent" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="">Ver</a>
-                        <a class="collapse-item" href="">Editar</a>
-                    </div>
-                </div>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEs"
-                    aria-expanded="true" aria-controls="collapseEs">
+                <a class="nav-link" href="">
                     <i class="fas fa-arrow-alt-circle-down"></i>
-                    <span>Estantes</span>
-                </a>
-                <div id="collapseEs" class="collapse" aria-labelledby="headingEs" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="">Ver</a>
-                    </div>
-                </div>
+                    <span>Estantes</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Operadores</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -127,11 +117,11 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="">Ver</a>
-                        <a class="collapse-item" href="utilities-border.html">Agregrar</a>
-                        <a class="collapse-item" href="utilities-animation.html">Actualizar</a>
-                        <a class="collapse-item" href="utilities-other.html">Eliminar</a> 
+                        <h6 class="collapse-header">Administrar</h6>
+                        <a class="collapse-item" href="{{ route('areas.index') }}">Ver áreas</a>
+                        <a class="collapse-item" href="">Operadores por área</a>
+                        <a class="collapse-item" href="">Maquinas por área</a>
+                        <a class="collapse-item" href="">Estantes por área</a> 
                     </div>
                 </div>
             </li> 
@@ -189,6 +179,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle"></i>
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                             </a>
                             <!-- Dropdown - User Information -->

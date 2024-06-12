@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('layouts.dashboard')
 
 @section('template_title')
     {{ __('Update') }} User

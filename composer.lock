@@ -5930,16 +5930,16 @@
         },
         {
             "name": "ibex/crud-generator",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/awais-vteams/laravel-crud-generator.git",
-                "reference": "4812eb366486a74f41b647a46c51aa7ca8e9488b"
+                "reference": "4a7859532ee89a87d6851df4afdfae39a365512b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awais-vteams/laravel-crud-generator/zipball/4812eb366486a74f41b647a46c51aa7ca8e9488b",
-                "reference": "4812eb366486a74f41b647a46c51aa7ca8e9488b",
+                "url": "https://api.github.com/repos/awais-vteams/laravel-crud-generator/zipball/4a7859532ee89a87d6851df4afdfae39a365512b",
+                "reference": "4a7859532ee89a87d6851df4afdfae39a365512b",
                 "shasum": ""
             },
             "require": {
@@ -5982,7 +5982,7 @@
             ],
             "support": {
                 "issues": "https://github.com/awais-vteams/laravel-crud-generator/issues",
-                "source": "https://github.com/awais-vteams/laravel-crud-generator/tree/v2.1.0"
+                "source": "https://github.com/awais-vteams/laravel-crud-generator/tree/v2.1.1"
             },
             "funding": [
                 {
@@ -5994,7 +5994,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2024-04-22T02:35:36+00:00"
+            "time": "2024-06-11T04:27:58+00:00"
         },
         {
             "name": "laravel/breeze",
@@ -6867,16 +6867,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.2.0",
+            "version": "11.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "705eba0190afe04bc057f565ad843267717cf109"
+                "reference": "1b8775732e9c401bda32df3ffbdf90dec7533ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/705eba0190afe04bc057f565ad843267717cf109",
-                "reference": "705eba0190afe04bc057f565ad843267717cf109",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1b8775732e9c401bda32df3ffbdf90dec7533ceb",
+                "reference": "1b8775732e9c401bda32df3ffbdf90dec7533ceb",
                 "shasum": ""
             },
             "require": {
@@ -6947,7 +6947,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.2.0"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.2.1"
             },
             "funding": [
                 {
@@ -6963,7 +6963,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-07T04:48:50+00:00"
+            "time": "2024-06-11T07:30:35+00:00"
         },
         {
             "name": "sebastian/cli-parser",

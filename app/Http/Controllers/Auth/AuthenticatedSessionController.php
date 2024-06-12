@@ -31,12 +31,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         if (Auth::user()->role === User::ROLE_ADMINISTRADOR ){
             return redirect()->route('admin.index');
-        } elseif (Auth::user()->role === User::ROLE_TRABAJADOR ){
-            return redirect()->route('trabajador.index');
+        } elseif (Auth::user()->role === User::ROLE_VENTAS ){
+            return redirect()->route('ventas.index');
         }elseif (Auth::user()->role === User::ROLE_USUARIO ){
             return redirect()->route('usuario.index');
         }else{
-            return redirect()->route('paginaPrincipal');
+            return redirect()->route('pagina-principal');
         }
         
     }

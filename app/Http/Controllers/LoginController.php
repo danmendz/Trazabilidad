@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
+    // use AuthenticatedUsers;
 
     /**
      * Where to redirect users after login.
@@ -39,8 +39,8 @@ class LoginController extends Controller
     {
         if ($user->hasRole('admin')) {
             return redirect('/admin');
-        } elseif ($user->hasRole('trabajador')) {
-            return redirect('/trabajador');
+        } elseif ($user->hasRole('ventas')) {
+            return redirect('/ventas');
         } elseif ($user->hasRole('usuario')) {
             return redirect('/usuario');
         }
