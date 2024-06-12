@@ -18,8 +18,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (!Auth::check() || Auth::user()->rol !== $role) {
-            abort(403, 'Unauthorized action.');
+        if (!Auth::check() || Auth::user()->role !== $role) {
+            abort(403, 'No puedes acceder a esta página.');
         }
 
         return $next($request);

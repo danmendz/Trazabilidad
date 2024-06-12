@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Panel de administrador</title>
+    <title>Panel</title>
+    <link rel="icon" href="{{ asset('images/icon-pgweb.jpeg') }}" type="image/png" sizes="32x32">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('libs/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -76,7 +77,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             @can('acceder-admin')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('index.users') }}">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Usuarios</span></a>
                 </li>

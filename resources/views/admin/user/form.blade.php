@@ -12,8 +12,13 @@
             {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
+            <label for="password" class="form-label">{{ __('Password') }}</label>
+            <input type="password" pattern=".{8,}" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password', $user?->password) }}" id="password" placeholder="Password">
+            {!! $errors->first('password', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
             <label for="role" class="form-label">{{ __('Role') }}</label>
-            <input type="text" name="role" class="form-control @error('role') is-invalid @enderror" value="{{ old('role', $user?->role) }}" id="role" placeholder="Role">
+            <input type="number" name="role" class="form-control @error('role') is-invalid @enderror" value="{{ old('role', $user?->role) }}" id="role" placeholder="Role">
             {!! $errors->first('role', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
