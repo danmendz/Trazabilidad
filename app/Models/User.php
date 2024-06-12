@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     const ROLE_ADMINISTRADOR = 1;
-    const ROLE_TRABAJADOR = 2;
+    const ROLE_VENTAS = 2;
     const ROLE_USUARIO = 3;
 
     //protected $perPage = 20;

@@ -28,9 +28,9 @@ class UserController extends Controller
         return view('usuario.index');
     }
 
-    public function trabajador()
+    public function ventas()
     {
-        return view('trabajador.index');
+        return view('ventas.index');
     }
 
     public function admin()

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $user->name ?? __('Show') . " " . __('User') }}
+    {{ $maquina->name ?? __('Show') . " " . __('Maquina') }}
 @endsection
 
 @section('content')
@@ -11,26 +11,26 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} User</span>
+                            <span class="card-title">{{ __('Show') }} Maquina</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('maquinas.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
-                                    {{ $user->name }}
+                                    <strong>Nombre:</strong>
+                                    {{ $maquina->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Email:</strong>
-                                    {{ $user->email }}
+                                    <strong>Estatus:</strong>
+                                    {{ $maquina->estatus }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Role:</strong>
-                                    {{ $user->role }}
+                                    <strong>Id Area:</strong>
+                                    {{ $maquina->id_area }}
                                 </div>
 
                     </div>
