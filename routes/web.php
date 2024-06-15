@@ -7,9 +7,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\MaquinaController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EstanteController;
+use App\Http\Controllers\OperadorController;
+use App\Http\Controllers\ReportesEstanteController;
+use App\Http\Controllers\ReportesMaquinadoController;
 use App\Http\Controllers\LoginController;
 use App\Models\User;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +47,10 @@ Route::middleware('check.admin.ventas')->group(function () {
     Route::resource('proyectos', ProyectoController::class);
     Route::resource('maquinas', MaquinaController::class);
     Route::resource('areas', AreaController::class);
+    Route::resource('estantes', EstanteController::class);
+    Route::resource('operadores', OperadorController::class);
+    Route::resource('reportes-estantes', ReportesEstanteController::class);
+    Route::resource('reportes-maquinados', ReportesMaquinadoController::class);
 });
 
 require __DIR__.'/auth.php';

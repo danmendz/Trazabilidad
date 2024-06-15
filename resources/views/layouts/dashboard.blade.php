@@ -13,14 +13,20 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('libs/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     <script data-main="js/app" src="js/lib/require.js"></script>
     <script data-main="scripts/main" src="scripts/require.js"></script>
+
+    <style>
+        .w-5 {display:none;}
+
+        .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+            display: none; /* Ocultar el div */
+        }
+    </style>
 
 </head>
 
@@ -96,13 +102,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('estantes.index') }}">
                     <i class="fas fa-arrow-alt-circle-down"></i>
                     <span>Estantes</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('operadores.index') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Operadores</span></a>
             </li>
@@ -135,13 +141,13 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('reportes-maquinados.index') }}">
                     <i class="fas fa-chart-pie"></i>
                     <span>Reportes maquinado</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('reportes-estantes.index') }}">
                     <i class="fas fa-chart-pie"></i>
                     <span>Reportes estante</span></a>
             </li>
@@ -168,7 +174,7 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars" style="color: #FFA800"></i>
+                        <i class="fa fa-bars" style="color: red"></i>
                     </button>
 
                     <!-- Topbar Navbar -->

@@ -52,7 +52,7 @@ class Area extends Model
      */
     public function operadores()
     {
-        return $this->hasMany(\App\Models\Operadore::class, 'id', 'id_area');
+        return $this->hasMany(\App\Models\Operador::class, 'id', 'id_area');
     }
     
 }
