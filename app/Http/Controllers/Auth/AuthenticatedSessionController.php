@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         }elseif (Auth::user()->role === User::ROLE_USUARIO ){
             return redirect()->route('usuario.index');
         }else{
-            return redirect()->route('pagina-principal');
+            return redirect()->route('login');
         }
         
     }
