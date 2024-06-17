@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} Estante
+    {{ __('Actualizar') }} Estante
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Estante</span>
+                        <span class="card-title">{{ __('Actualizar') }} Estante</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('estantes.update', $estante->id) }}"  role="form" enctype="multipart/form-data">

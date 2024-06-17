@@ -40,7 +40,7 @@ class ReportesEstanteController extends Controller
         ReportesEstante::create($request->validated());
 
         return Redirect::route('reportes-estantes.index')
-            ->with('success', 'ReportesEstante created successfully.');
+            ->with('success', 'ReportesEstante creado exitosamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class ReportesEstanteController extends Controller
         $reportesEstante->update($request->validated());
 
         return Redirect::route('reportes-estantes.index')
-            ->with('success', 'ReportesEstante updated successfully');
+            ->with('success', 'ReportesEstante actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class ReportesEstanteController extends Controller
         ReportesEstante::find($id)->delete();
 
         return Redirect::route('reportes-estantes.index')
-            ->with('success', 'ReportesEstante deleted successfully');
+            ->with('success', 'ReportesEstante eliminado exitosamente.');
     }
 }

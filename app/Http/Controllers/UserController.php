@@ -61,7 +61,7 @@ class UserController extends Controller
         ]);
 
         return Redirect::route('users.index')
-            ->with('success', 'User created successfully.');
+            ->with('success', 'Usuario creado exitosamente.');
     }
 
     /**
@@ -97,7 +97,7 @@ class UserController extends Controller
         ]);
 
         return Redirect::route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Usuario actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -105,6 +105,6 @@ class UserController extends Controller
         User::find($id)->delete();
 
         return Redirect::route('users.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'Usuario eliminado exitosamente.');
     }
 }

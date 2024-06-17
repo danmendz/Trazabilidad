@@ -40,7 +40,7 @@ class MaquinaController extends Controller
         Maquina::create($request->validated());
 
         return Redirect::route('maquinas.index')
-            ->with('success', 'Maquina created successfully.');
+            ->with('success', 'Máquina creado exitosamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class MaquinaController extends Controller
         $maquina->update($request->validated());
 
         return Redirect::route('maquinas.index')
-            ->with('success', 'Maquina updated successfully');
+            ->with('success', 'Máquina actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class MaquinaController extends Controller
         Maquina::find($id)->delete();
 
         return Redirect::route('maquinas.index')
-            ->with('success', 'Maquina deleted successfully');
+            ->with('success', 'Máquina eliminado exitosamente.');
     }
 }

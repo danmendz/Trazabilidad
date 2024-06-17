@@ -40,7 +40,7 @@ class AreaController extends Controller
         Area::create($request->validated());
 
         return Redirect::route('areas.index')
-            ->with('success', 'Area created successfully.');
+            ->with('success', 'Área creado exitosamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class AreaController extends Controller
         $area->update($request->validated());
 
         return Redirect::route('areas.index')
-            ->with('success', 'Area updated successfully');
+            ->with('success', 'Área actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class AreaController extends Controller
         Area::find($id)->delete();
 
         return Redirect::route('areas.index')
-            ->with('success', 'Area deleted successfully');
+            ->with('success', 'Área eliminado exitosamente.');
     }
 }

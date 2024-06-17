@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $proyecto->name ?? __('Show') . " " . __('Proyecto') }}
+    {{ $proyecto->name ?? __('Mostrar') . " " . __('Proyecto') }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Proyecto</span>
+                            <span class="card-title">{{ __('Mostrar') }} Proyecto</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('proyectos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('proyectos.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
@@ -22,7 +22,7 @@
                         
                                 <div class="form-group mb-2 mb20">
                                     <strong>Codigo Proyecto:</strong>
-                                    {{ $proyecto->codigo_proyecto }}
+                                    {{ $proyecto->código_proyecto }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Empresa:</strong>

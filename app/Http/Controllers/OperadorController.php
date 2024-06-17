@@ -16,7 +16,7 @@ class OperadorController extends Controller
      */
     public function index(Request $request): View
     {
-        $operadores = Operador::paginate();
+        $operadore = Operador::paginate();
 
         return view('modules.operador.index', compact('operadores'))
             ->with('i', ($request->input('page', 1) - 1) * $operadores->perPage());
@@ -40,7 +40,7 @@ class OperadorController extends Controller
         Operador::create($request->validated());
 
         return Redirect::route('operadores.index')
-            ->with('success', 'Operadore created successfully.');
+            ->with('success', 'Operador creado exitosamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class OperadorController extends Controller
         $operadore->update($request->validated());
 
         return Redirect::route('operadores.index')
-            ->with('success', 'Operadore updated successfully');
+            ->with('success', 'Operador actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class OperadorController extends Controller
         Operador::find($id)->delete();
 
         return Redirect::route('operadores.index')
-            ->with('success', 'Operadore deleted successfully');
+            ->with('success', 'Operador eliminado exitosamente.');
     }
 }

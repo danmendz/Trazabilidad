@@ -202,7 +202,7 @@
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        {{ __('Log Out') }}
+                                        {{ __('Cerrar sesión') }}
                                     </x-dropdown-link>
                                 </form>
                             </div>

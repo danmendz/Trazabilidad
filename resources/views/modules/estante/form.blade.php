@@ -7,13 +7,13 @@
             {!! $errors->first('nombre', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_area" class="form-label">{{ __('Id Area') }}</label>
+            <label for="id_area" class="form-label">{{ __('ID Área') }}</label>
             <input type="text" name="id_area" class="form-control @error('id_area') is-invalid @enderror" value="{{ old('id_area', $estante?->id_area) }}" id="id_area" placeholder="Id Area">
             {!! $errors->first('id_area', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
     </div>
     <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>
 </div>

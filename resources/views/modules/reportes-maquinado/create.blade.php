@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ __('Create') }} Reportes Maquinado
+    {{ __('Crear') }} Reportes Maquinado
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Reportes Maquinado</span>
+                        <span class="card-title">{{ __('Crear') }} Reportes Maquinado</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('reportes-maquinados.store') }}"  role="form" enctype="multipart/form-data">

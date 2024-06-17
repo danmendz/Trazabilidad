@@ -40,7 +40,7 @@ class ReportesMaquinadoController extends Controller
         ReportesMaquinado::create($request->validated());
 
         return Redirect::route('reportes-maquinados.index')
-            ->with('success', 'ReportesMaquinado created successfully.');
+            ->with('success', 'ReportesMaquinado creado exitosamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class ReportesMaquinadoController extends Controller
         $reportesMaquinado->update($request->validated());
 
         return Redirect::route('reportes-maquinados.index')
-            ->with('success', 'ReportesMaquinado updated successfully');
+            ->with('success', 'ReportesMaquinado actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class ReportesMaquinadoController extends Controller
         ReportesMaquinado::find($id)->delete();
 
         return Redirect::route('reportes-maquinados.index')
-            ->with('success', 'ReportesMaquinado deleted successfully');
+            ->with('success', 'ReportesMaquinado eliminado exitosamente.');
     }
 }

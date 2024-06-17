@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $reportesEstante->name ?? __('Show') . " " . __('Reportes Estante') }}
+    {{ $reportesEstante->name ?? __('Mostrar') . " " . __('Reportes Estante') }}
 @endsection
 
 @section('content')
@@ -11,21 +11,21 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Reportes Estante</span>
+                            <span class="card-title">{{ __('Mostrar') }} Reportes Estante</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('reportes-estantes.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('reportes-estantes.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Codigo Proyecto:</strong>
+                                    <strong>Código Proyecto:</strong>
                                     {{ $reportesEstante->codigo_proyecto }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Codigo Partida:</strong>
+                                    <strong>Código Partida:</strong>
                                     {{ $reportesEstante->codigo_partida }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -37,7 +37,7 @@
                                     {{ $reportesEstante->hora }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Accion:</strong>
+                                    <strong>Acción:</strong>
                                     {{ $reportesEstante->accion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -49,7 +49,7 @@
                                     {{ $reportesEstante->estatus }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Estante:</strong>
+                                    <strong>ID Estante:</strong>
                                     {{ $reportesEstante->id_estante }}
                                 </div>
 

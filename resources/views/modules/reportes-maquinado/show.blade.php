@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $reportesMaquinado->name ?? __('Show') . " " . __('Reportes Maquinado') }}
+    {{ $reportesMaquinado->name ?? __('Mostrar') . " " . __('Reportes Maquinado') }}
 @endsection
 
 @section('content')
@@ -11,21 +11,21 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Reportes Maquinado</span>
+                            <span class="card-title">{{ __('Mostrar') }} Reportes Maquinado</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('reportes-maquinados.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('reportes-maquinados.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Codigo Proyecto:</strong>
+                                    <strong>Código Proyecto:</strong>
                                     {{ $reportesMaquinado->codigo_proyecto }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Codigo Partida:</strong>
+                                    <strong>Código Partida:</strong>
                                     {{ $reportesMaquinado->codigo_partida }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -41,7 +41,7 @@
                                     {{ $reportesMaquinado->turno }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Accion:</strong>
+                                    <strong>Acción:</strong>
                                     {{ $reportesMaquinado->accion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -53,15 +53,15 @@
                                     {{ $reportesMaquinado->tiempo_total }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Area:</strong>
+                                    <strong>ID Área:</strong>
                                     {{ $reportesMaquinado->id_area }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Maquina:</strong>
+                                    <strong>ID Máquina:</strong>
                                     {{ $reportesMaquinado->id_maquina }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Operador:</strong>
+                                    <strong>ID Operador:</strong>
                                     {{ $reportesMaquinado->id_operador }}
                                 </div>
 

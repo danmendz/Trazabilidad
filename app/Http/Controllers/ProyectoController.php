@@ -50,7 +50,7 @@ class ProyectoController extends Controller
         Proyecto::create($request->validated());
 
         return Redirect::route('proyectos.index')
-            ->with('success', 'Proyecto created successfully.');
+            ->with('success', 'Proyecto creado exitosamente.');
     }
 
     /**
@@ -81,7 +81,7 @@ class ProyectoController extends Controller
         $proyecto->update($request->validated());
 
         return Redirect::route('proyectos.index')
-            ->with('success', 'Proyecto updated successfully');
+            ->with('success', 'Proyecto actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -89,6 +89,6 @@ class ProyectoController extends Controller
         Proyecto::find($id)->delete();
 
         return Redirect::route('proyectos.index')
-            ->with('success', 'Proyecto deleted successfully');
+            ->with('success', 'Proyecto eliminado exitosamente.');
     }
 }

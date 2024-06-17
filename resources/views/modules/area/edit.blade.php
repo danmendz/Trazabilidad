@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ __('Update') }} Area
+    {{ __('Actualizar') }} Área
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Area</span>
+                        <span class="card-title">{{ __('Actualizar') }} Área</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('areas.update', $area->id) }}"  role="form" enctype="multipart/form-data">

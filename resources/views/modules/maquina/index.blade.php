@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    Maquinas
+    Máquinas
 @endsection
 
 @section('content')
@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Maquinas') }}
+                                {{ __('Máquinas') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('maquinas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear nueva máquina') }}
                                 </a>
                               </div>
                         </div>
@@ -38,7 +38,7 @@
                                         
 									<th >Nombre</th>
 									<th >Estatus</th>
-									<th >Id Area</th>
+									<th >ID Área</th>
 
                                         <th></th>
                                     </tr>
@@ -54,11 +54,11 @@
 
                                             <td>
                                                 <form action="{{ route('maquinas.destroy', $maquina->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('maquinas.show', $maquina->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('maquinas.edit', $maquina->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('maquinas.show', $maquina->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('maquinas.edit', $maquina->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro de que quieres eliminar la máquina?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

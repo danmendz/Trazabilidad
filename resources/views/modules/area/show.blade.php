@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $area->name ?? __('Show') . " " . __('Area') }}
+    {{ $area->name ?? __('Mostrar') . " " . __('Área') }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Area</span>
+                            <span class="card-title">{{ __('Mostrar') }} Área</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('areas.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('areas.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
