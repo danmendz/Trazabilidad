@@ -52,7 +52,8 @@
 										<td >{{ $proyecto->codigo_proyecto }}</td>
 										<td >{{ $proyecto->empresa }}</td>
 										<td >{{ $proyecto->estatus }}</td>
-										<td >{{ $proyecto->imagen }}</td>
+										<td ><img src="{{ asset('images/projects/' . $proyecto->imagen) }}" width="100px">
+                                        </td>
 
                                             <td>
                                                 <form action="{{ route('proyectos.destroy', $proyecto->id) }}" method="POST">

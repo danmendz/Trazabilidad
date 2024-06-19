@@ -21,15 +21,6 @@ class ProyectoController extends Controller
 
         return view('modules.proyecto.index', compact('proyectos'))
             ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // $rol = Auth::user()->role;
-
-        // if($rol == 1) {
-        //     return view('admin.proyecto.index', compact('proyectos'))
-        //     ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // } elseif ($rol == 2) {
-        //     return view('admin.proyecto.index', compact('proyectos'))
-        //     ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // }
     }
 
     /**
@@ -47,7 +38,23 @@ class ProyectoController extends Controller
      */
     public function store(ProyectoRequest $request): RedirectResponse
     {
-        Proyecto::create($request->validated());
+        $request->validate([
+            'codigo_proyecto' => 'required', 
+            'empresa' => 'required', 
+            'estatus' => 'required', 
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        $input = $request->all();
+    
+        if ($imagen = $request->file('imagen')) {
+            $destinationPath = 'images/projects';
+            $profileImage = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($destinationPath, $profileImage);
+            $input['imagen'] = "$profileImage";
+        }
+      
+        Proyecto::create($input);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto created successfully.');
@@ -78,7 +85,24 @@ class ProyectoController extends Controller
      */
     public function update(ProyectoRequest $request, Proyecto $proyecto): RedirectResponse
     {
-        $proyecto->update($request->validated());
+        $request->validate([
+            'codigo_proyecto' => 'required', 
+            'empresa' => 'required', 
+            'estatus' => 'required', 
+        ]);
+    
+        $input = $request->all();
+    
+        if ($imagen = $request->file('imagen')) {
+            $destinationPath = 'images/projects';
+            $profileImage = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($destinationPath, $profileImage);
+            $input['imagen'] = "$profileImage";
+        } else{
+            unset($input['imagen']);
+        }
+
+        $proyecto->update($input);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto updated successfully');

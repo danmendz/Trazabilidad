@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Imagen:</strong>
-                                    {{ $proyecto->imagen }}
+                                    <img src="{{ asset('images/projects/' . $proyecto->imagen) }}" width="300px">
                                 </div>
 
                     </div>
