@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estante;
+use App\Models\Area;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EstanteRequest;
@@ -16,7 +17,8 @@ class EstanteController extends Controller
      */
     public function index(Request $request): View
     {
-        $estantes = Estante::paginate();
+        // Cargar la relación area con los estantes
+        $estantes = Estante::with('area')->paginate();
 
         return view('modules.estante.index', compact('estantes'))
             ->with('i', ($request->input('page', 1) - 1) * $estantes->perPage());
@@ -28,8 +30,9 @@ class EstanteController extends Controller
     public function create(): View
     {
         $estante = new Estante();
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.estante.create', compact('estante'));
+        return view('modules.estante.create', compact('estante', 'areas'));
     }
 
     /**
@@ -49,8 +52,9 @@ class EstanteController extends Controller
     public function show($id): View
     {
         $estante = Estante::find($id);
-
-        return view('modules.estante.show', compact('estante'));
+        // Obtener el nombre del área correspondiente al ID
+        $area = Area::find($estante->id_area);
+        return view('modules.estante.show', compact('estante', 'area'));
     }
 
     /**
@@ -59,8 +63,9 @@ class EstanteController extends Controller
     public function edit($id): View
     {
         $estante = Estante::find($id);
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.estante.edit', compact('estante'));
+        return view('modules.estante.edit', compact('estante', 'areas'));
     }
 
     /**

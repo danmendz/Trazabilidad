@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ __('Crear') }} Operadore
+    {{ __('Crear') }} Operador
 @endsection
 
 @section('content')
@@ -11,13 +11,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Crear') }} Operadore</span>
+                        <span class="card-title">{{ __('Crear') }} Operador</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('operadores.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('modules.operadore.form')
+                            @include('modules.operador.form')
 
                         </form>
                     </div>

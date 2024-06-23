@@ -18,7 +18,13 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="role" class="form-label">{{ __('Rol') }}</label>
-            <input type="number" name="role" class="form-control @error('role') is-invalid @enderror" value="{{ old('role', $user?->role) }}" id="role" placeholder="Role">
+            <select name="role" class="form-control @error('role') is-invalid @enderror" id="role">
+                @foreach($roles as $role_id => $role_name)
+                    <option value="{{ $role_id }}" {{ old('role', $user?->role) == $role_id ? 'selected' : '' }}>
+                        {{ $role_name }}
+                    </option>
+                @endforeach
+            </select>
             {!! $errors->first('role', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 

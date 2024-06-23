@@ -41,9 +41,9 @@
 									<th >Fecha</th>
 									<th >Hora</th>
 									<th >Acción</th>
-									<th >Tiempo Total en Minutos</th>
+									<th >Minutos</th>
 									<th >Estatus</th>
-									<th >ID Estante</th>
+									<th >Estante</th>
 
                                         <th></th>
                                     </tr>
@@ -60,8 +60,8 @@
 										<td >{{ $reportesEstante->accion }}</td>
 										<td >{{ $reportesEstante->tiempo_total }}</td>
 										<td >{{ $reportesEstante->estatus }}</td>
-										<td >{{ $reportesEstante->id_estante }}</td>
-
+										 <!-- Mostrar el nombre del estante en lugar del ID -->
+                                         <td>{{ $reportesEstante->estante->nombre }}</td>
                                             <td>
                                                 <form action="{{ route('reportes-estantes.destroy', $reportesEstante->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('reportes-estantes.show', $reportesEstante->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>

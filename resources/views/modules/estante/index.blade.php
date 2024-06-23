@@ -35,10 +35,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Nombre</th>
-									<th >ID Área</th>
-
+                                        <th >Nombre</th>
+                                        <th >Área</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -48,7 +46,7 @@
                                             <td>{{ ++$i }}</td>
                                             
 										<td >{{ $estante->nombre }}</td>
-										<td >{{ $estante->id_area }}</td>
+										<td>{{ $estante->area->nombre }}</td> <!-- Mostrar el nombre del área -->
 
                                             <td>
                                                 <form action="{{ route('estantes.destroy', $estante->id) }}" method="POST">

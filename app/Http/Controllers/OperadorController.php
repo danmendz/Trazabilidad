@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Operador;
+use App\Models\Area;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\OperadorRequest;
@@ -16,7 +17,7 @@ class OperadorController extends Controller
      */
     public function index(Request $request): View
     {
-        $operadore = Operador::paginate();
+        $operadores = Operador::with('area')->paginate();
 
         return view('modules.operador.index', compact('operadores'))
             ->with('i', ($request->input('page', 1) - 1) * $operadores->perPage());
@@ -27,9 +28,11 @@ class OperadorController extends Controller
      */
     public function create(): View
     {
-        $operadore = new Operador();
+        $operador = new Operador();
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.operador.create', compact('operadores'));
+
+        return view('modules.operador.create', compact('operador', 'areas'));
     }
 
     /**
@@ -48,9 +51,10 @@ class OperadorController extends Controller
      */
     public function show($id): View
     {
-        $operadore = Operador::find($id);
+        $operador = Operador::find($id);
+        $area = Area::find($operador->id_area);
 
-        return view('modules.operador.show', compact('operadores'));
+        return view('modules.operador.show', compact('operador', 'area'));
     }
 
     /**
@@ -58,17 +62,18 @@ class OperadorController extends Controller
      */
     public function edit($id): View
     {
-        $operadore = Operador::find($id);
+        $operador = Operador::find($id);
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.operador.edit', compact('operadores'));
+        return view('modules.operador.edit', compact('operador', 'areas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(OperadorRequest $request, Operador $operadore): RedirectResponse
+    public function update(OperadorRequest $request, Operador $operador): RedirectResponse
     {
-        $operadore->update($request->validated());
+        $operador->update($request->validated());
 
         return Redirect::route('operadores.index')
             ->with('success', 'Operador actualizado exitosamente.');

@@ -28,9 +28,9 @@
                                     <strong>Correo Electrónico:</strong>
                                     {{ $user->email }}
                                 </div>
-                                <div class="form-group mb-2 mb20">
+                                <div class="form-group">
                                     <strong>Rol:</strong>
-                                    {{ $user->role }}
+                                    {{ $user->role_name }}
                                 </div>
 
                     </div>

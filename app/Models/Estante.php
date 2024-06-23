@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Estante
@@ -35,7 +36,7 @@ class Estante extends Model
      */
     public function area()
     {
-        return $this->belongsTo(\App\Models\Area::class, 'id_area', 'id');
+        return $this->belongsTo(Area::class, 'id_area');
     }
     
 }

@@ -38,8 +38,9 @@ class ProyectoController extends Controller
     public function create(): View
     {
         $proyecto = new Proyecto();
+        $estatusOptions = ['Activa', 'Cancelado']; // Ejemplo de opciones de estatus
 
-        return view('modules.proyecto.create', compact('proyecto'));
+        return view('modules.proyecto.create', compact('proyecto', 'estatusOptions'));
     }
 
     /**
@@ -47,7 +48,19 @@ class ProyectoController extends Controller
      */
     public function store(ProyectoRequest $request): RedirectResponse
     {
-        Proyecto::create($request->validated());
+        $validatedData = $request->validate([
+            'codigo_proyecto' => 'required|string|max:255',
+            'empresa' => 'required|string|max:255',
+            'estatus' => 'required|string|max:255',
+            'imagen' => 'nullable|image',
+
+        ]);
+
+        if ($request->hasFile('imagen')) {
+            $validatedData['imagen'] = $request->file('imagen')->store('imagenes');
+        }
+
+        Proyecto::create($validatedData);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto creado exitosamente.');
@@ -68,9 +81,10 @@ class ProyectoController extends Controller
      */
     public function edit($id): View
     {
-        $proyecto = Proyecto::find($id);
+        $proyecto = Proyecto::findOrFail($id);
+        $estatusOptions = ['Activa', 'Cancelado']; // Ejemplo de opciones de estatus
 
-        return view('modules.proyecto.edit', compact('proyecto'));
+        return view('modules.proyecto.edit', compact('proyecto', 'estatusOptions'));
     }
 
     /**
@@ -78,7 +92,18 @@ class ProyectoController extends Controller
      */
     public function update(ProyectoRequest $request, Proyecto $proyecto): RedirectResponse
     {
-        $proyecto->update($request->validated());
+        $validatedData = $request->validate([
+            'codigo_proyecto' => 'required|string|max:255',
+            'empresa' => 'required|string|max:255',
+            'estatus' => 'required|string|max:255',
+            'imagen' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('imagen')) {
+            $validatedData['imagen'] = $request->file('imagen')->store('imagenes');
+        }
+
+        $proyecto->update($validatedData);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto actualizado exitosamente.');
@@ -86,7 +111,8 @@ class ProyectoController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Proyecto::find($id)->delete();
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->delete();
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto eliminado exitosamente.');

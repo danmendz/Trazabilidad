@@ -17,7 +17,7 @@
                         <form method="POST" action="{{ route('estantes.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('modules.estante.form')
+                            @include('modules.estante.form', ['areas' => $areas])
 
                         </form>
                     </div>

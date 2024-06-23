@@ -35,25 +35,23 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Nombre</th>
-									<th >ID Área</th>
-
+									    <th >Nombre</th>
+									    <th >Área</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($operadores as $operadore)
+                                    @foreach ($operadores as $operador)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $operadore->nombre }}</td>
-										<td >{{ $operadore->id_area }}</td>
+										<td >{{ $operador->nombre }}</td>
+										<td >{{ $operador->area->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('operadores.destroy', $operadore->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('operadores.show', $operadore->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('operadores.edit', $operadore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('operadores.destroy', $operador->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('operadores.show', $operador->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('operadores.edit', $operador->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro de eliminar el operador?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>

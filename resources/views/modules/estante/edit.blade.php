@@ -15,10 +15,12 @@
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('estantes.update', $estante->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('modules.estante.form')
+                            @method('PUT')
+
+                            @include('modules.estante.form', ['areas' => $areas])
+
 
                         </form>
                     </div>

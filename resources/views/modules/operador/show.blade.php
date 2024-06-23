@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('template_title')
-    {{ $operadore->name ?? __('Mostrar') . " " . __('Operadore') }}
+    {{ $operador->name ?? __('Mostrar') . " " . __('Operador') }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Mostrar') }} Operadore</span>
+                            <span class="card-title">{{ __('Mostrar') }} Operador</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('operadores.index') }}"> {{ __('Volver') }}</a>
@@ -22,11 +22,11 @@
                         
                                 <div class="form-group mb-2 mb20">
                                     <strong>Nombre:</strong>
-                                    {{ $operadore->nombre }}
+                                    {{ $operador->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>ID Área:</strong>
-                                    {{ $operadore->id_area }}
+                                    <strong>Área:</strong>
+                                    {{ $area->nombre }}
                                 </div>
 
                     </div>

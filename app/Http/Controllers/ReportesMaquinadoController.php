@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReportesMaquinado;
+use App\Models\Area;
+use App\Models\Maquina;
+use App\Models\Operador;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReportesMaquinadoRequest;
@@ -16,7 +19,7 @@ class ReportesMaquinadoController extends Controller
      */
     public function index(Request $request): View
     {
-        $reportesMaquinados = ReportesMaquinado::paginate();
+        $reportesMaquinados = ReportesMaquinado::with('area', 'maquina', 'operador')->paginate();
 
         return view('modules.reportes-maquinado.index', compact('reportesMaquinados'))
             ->with('i', ($request->input('page', 1) - 1) * $reportesMaquinados->perPage());
@@ -27,9 +30,18 @@ class ReportesMaquinadoController extends Controller
      */
     public function create(): View
     {
+        $areas = Area::all();
+        $maquinas = Maquina::all();
+        $operadores = Operador::all();
+        
+        // Definir las listas de valores para Turno, Acción y Estatus
+        $turnos = ['Primero', 'Segundo'];
+        $acciones = ['Entrada', 'Turno terminado', 'Pieza terminada'];
+        $estatuses = ['Proceso', 'Finalizado', 'Revisar'];
+    
         $reportesMaquinado = new ReportesMaquinado();
-
-        return view('modules.reportes-maquinado.create', compact('reportesMaquinado'));
+    
+        return view('modules.reportes-maquinado.create', compact('reportesMaquinado', 'areas', 'maquinas', 'operadores', 'turnos', 'acciones', 'estatuses'));
     }
 
     /**
@@ -38,7 +50,7 @@ class ReportesMaquinadoController extends Controller
     public function store(ReportesMaquinadoRequest $request): RedirectResponse
     {
         ReportesMaquinado::create($request->validated());
-
+    
         return Redirect::route('reportes-maquinados.index')
             ->with('success', 'ReportesMaquinado creado exitosamente.');
     }
@@ -48,7 +60,7 @@ class ReportesMaquinadoController extends Controller
      */
     public function show($id): View
     {
-        $reportesMaquinado = ReportesMaquinado::find($id);
+        $reportesMaquinado = ReportesMaquinado::with('area', 'maquina', 'operador')->findOrFail($id);
 
         return view('modules.reportes-maquinado.show', compact('reportesMaquinado'));
     }
@@ -59,8 +71,17 @@ class ReportesMaquinadoController extends Controller
     public function edit($id): View
     {
         $reportesMaquinado = ReportesMaquinado::find($id);
-
-        return view('modules.reportes-maquinado.edit', compact('reportesMaquinado'));
+    
+        $areas = Area::all();
+        $maquinas = Maquina::all();
+        $operadores = Operador::all();
+        
+        // Definir las listas de valores para Turno, Acción y Estatus
+        $turnos = ['Primero', 'Segundo'];
+        $acciones = ['Entrada', 'Turno terminado', 'Pieza terminada'];
+        $estatuses = ['Proceso', 'Finalizado', 'Revisar'];
+    
+        return view('modules.reportes-maquinado.edit', compact('reportesMaquinado', 'areas', 'maquinas', 'operadores', 'turnos', 'acciones', 'estatuses'));
     }
 
     /**
@@ -69,7 +90,7 @@ class ReportesMaquinadoController extends Controller
     public function update(ReportesMaquinadoRequest $request, ReportesMaquinado $reportesMaquinado): RedirectResponse
     {
         $reportesMaquinado->update($request->validated());
-
+    
         return Redirect::route('reportes-maquinados.index')
             ->with('success', 'ReportesMaquinado actualizado exitosamente.');
     }

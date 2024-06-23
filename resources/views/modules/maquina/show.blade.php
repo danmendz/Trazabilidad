@@ -19,20 +19,18 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Nombre:</strong>
-                                    {{ $maquina->nombre }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Estatus:</strong>
-                                    {{ $maquina->estatus }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Id Area:</strong>
-                                    {{ $maquina->id_area }}
-                                </div>
-
+                        <div class="form-group mb-2 mb20">
+                            <strong>{{ __('Nombre') }}:</strong>
+                            {{ $maquina->nombre }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>{{ __('Estatus') }}:</strong>
+                            {{ $maquina->estatus }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>{{ __('Área') }}:</strong>
+                            {{ $maquina->area ? $maquina->area->nombre : 'Área no asignada' }}
+                        </div>
                     </div>
                 </div>
             </div>

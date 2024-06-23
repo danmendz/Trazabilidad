@@ -35,19 +35,17 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Código Proyecto</th>
-									<th >Código Partida</th>
-									<th >Fecha</th>
-									<th >Hora</th>
-									<th >Turno</th>
-									<th >Acción</th>
-									<th >Estatus</th>
-									<th >Tiempo Total</th>
-									<th >ID Área</th>
-									<th >ID Máquina</th>
-									<th >ID Operador</th>
-
+                                        <th>Código Proyecto</th>
+                                        <th>Código Partida</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Turno</th>
+                                        <th>Acción</th>
+                                        <th>Estatus</th>
+                                        <th>Tiempo Total</th>
+                                        <th>Área</th>
+                                        <th>Máquina</th>
+                                        <th>Operador</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -64,9 +62,9 @@
 										<td >{{ $reportesMaquinado->accion }}</td>
 										<td >{{ $reportesMaquinado->estatus }}</td>
 										<td >{{ $reportesMaquinado->tiempo_total }}</td>
-										<td >{{ $reportesMaquinado->id_area }}</td>
-										<td >{{ $reportesMaquinado->id_maquina }}</td>
-										<td >{{ $reportesMaquinado->id_operador }}</td>
+										<td >{{ $reportesMaquinado->area->nombre ?? 'N/A' }}</td>
+										<td >{{ $reportesMaquinado->maquina->nombre ?? 'N/A' }}</td>
+										<td >{{ $reportesMaquinado->operador->nombre ?? 'N/A' }}</td>
 
                                             <td>
                                                 <form action="{{ route('reportes-maquinados.destroy', $reportesMaquinado->id) }}" method="POST">

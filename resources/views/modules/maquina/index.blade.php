@@ -35,11 +35,10 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Nombre</th>
-									<th >Estatus</th>
-									<th >ID Área</th>
-
+                                        <th>Nombre</th>
+                                        <th>Estatus</th>
+                                        <th>Área</th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -50,7 +49,7 @@
                                             
 										<td >{{ $maquina->nombre }}</td>
 										<td >{{ $maquina->estatus }}</td>
-										<td >{{ $maquina->id_area }}</td>
+										<td>{{ $maquina->area ? $maquina->area->nombre : 'Área no asignada' }}</td>
 
                                             <td>
                                                 <form action="{{ route('maquinas.destroy', $maquina->id) }}" method="POST">

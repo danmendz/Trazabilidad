@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ReportesEstanteRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Estante;
 
 class ReportesEstanteController extends Controller
 {
@@ -16,8 +17,9 @@ class ReportesEstanteController extends Controller
      */
     public function index(Request $request): View
     {
-        $reportesEstantes = ReportesEstante::paginate();
-
+        // Cargar la relación 'estante' junto con los datos de reportesEstante
+        $reportesEstantes = ReportesEstante::with('estante')->paginate();
+    
         return view('modules.reportes-estante.index', compact('reportesEstantes'))
             ->with('i', ($request->input('page', 1) - 1) * $reportesEstantes->perPage());
     }
@@ -27,9 +29,13 @@ class ReportesEstanteController extends Controller
      */
     public function create(): View
     {
+        $estantes = Estante::all();
+        $acciones = ['Entrada', 'Salida'];
+        $estatuses = ['Conforme', 'No conforme'];
+
         $reportesEstante = new ReportesEstante();
 
-        return view('modules.reportes-estante.create', compact('reportesEstante'));
+        return view('modules.reportes-estante.create', compact('reportesEstante', 'estantes', 'acciones', 'estatuses'));
     }
 
     /**
@@ -48,8 +54,8 @@ class ReportesEstanteController extends Controller
      */
     public function show($id): View
     {
-        $reportesEstante = ReportesEstante::find($id);
-
+        $reportesEstante = ReportesEstante::with('estante')->findOrFail($id);
+    
         return view('modules.reportes-estante.show', compact('reportesEstante'));
     }
 
@@ -60,7 +66,11 @@ class ReportesEstanteController extends Controller
     {
         $reportesEstante = ReportesEstante::find($id);
 
-        return view('modules.reportes-estante.edit', compact('reportesEstante'));
+        $estantes = Estante::all();
+        $acciones = ['Entrada', 'Salida'];
+        $estatuses = ['Conforme', 'No conforme'];
+
+        return view('modules.reportes-estante.edit', compact('reportesEstante', 'estantes', 'acciones', 'estatuses'));
     }
 
     /**

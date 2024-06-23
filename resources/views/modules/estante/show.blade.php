@@ -19,17 +19,14 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Nombre:</strong>
-                                    {{ $estante->nombre }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>ID Área:</strong>
-                                    {{ $estante->id_area }}
-                                </div>
-
-                    </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre:</strong>
+                            {{ $estante->nombre }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Área:</strong>
+                            {{ $area->nombre }}
+                        </div>
                 </div>
             </div>
         </div>

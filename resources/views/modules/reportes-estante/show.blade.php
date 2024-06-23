@@ -49,8 +49,8 @@
                                     {{ $reportesEstante->estatus }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>ID Estante:</strong>
-                                    {{ $reportesEstante->id_estante }}
+                                    <strong>Estante:</strong>
+                                    {{ $reportesEstante->estante->nombre }}
                                 </div>
 
                     </div>

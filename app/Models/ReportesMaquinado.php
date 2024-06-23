@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 /**
  * Class ReportesMaquinado
@@ -45,25 +47,16 @@ class ReportesMaquinado extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function area()
-    {
-        return $this->belongsTo(\App\Models\Area::class, 'id_area', 'id');
+    public function area() {
+        return $this->belongsTo(Area::class, 'id_area');
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function maquina()
-    {
-        return $this->belongsTo(\App\Models\Maquina::class, 'id_maquina', 'id');
+    public function maquina() {
+        return $this->belongsTo(Maquina::class, 'id_maquina');
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function operadore()
-    {
-        return $this->belongsTo(\App\Models\Operador::class, 'id_operador', 'id');
+    public function operador() {
+        return $this->belongsTo(Operador::class, 'id_operador');
     }
     
 }

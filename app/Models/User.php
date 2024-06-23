@@ -59,4 +59,20 @@ class User extends Authenticatable
 
         return null;
     }
+
+    /**
+     * Get the role name associated with the user.
+     *
+     * @return string
+     */
+    public function getRoleNameAttribute()
+    {
+        $roles = [
+            self::ROLE_ADMINISTRADOR => 'Administrador',
+            self::ROLE_VENTAS => 'Ventas',
+            self::ROLE_USUARIO => 'Usuario',
+        ];
+
+        return $roles[$this->role] ?? 'Desconocido';
+    }
 }

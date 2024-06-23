@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Area
  *
@@ -36,7 +36,7 @@ class Area extends Model
      */
     public function estantes()
     {
-        return $this->hasMany(\App\Models\Estante::class, 'id', 'id_area');
+        return $this->hasMany(Estante::class, 'id_area', 'id');
     }
     
     /**
@@ -44,7 +44,7 @@ class Area extends Model
      */
     public function maquinas()
     {
-        return $this->hasMany(\App\Models\Maquina::class, 'id', 'id_area');
+        return $this->hasMany(Maquina::class, 'id_area', 'id');
     }
     
     /**
@@ -52,7 +52,7 @@ class Area extends Model
      */
     public function operadores()
     {
-        return $this->hasMany(\App\Models\Operador::class, 'id', 'id_area');
+        return $this->hasMany(Operador::class, 'id_area', 'id');
     }
     
 }

@@ -44,8 +44,9 @@ class UserController extends Controller
     public function create(): View
     {
         $user = new User();
+        $roles = $this->getRoles(); // Obtener los roles
 
-        return view('admin.user.create', compact('user'));
+        return view('admin.user.create', compact('user', 'roles'));
     }
 
     /**
@@ -57,12 +58,13 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => $request->role, // Usar 'role'
         ]);
 
         return Redirect::route('users.index')
             ->with('success', 'Usuario creado exitosamente.');
     }
+
 
     /**
      * Display the specified resource.
@@ -73,15 +75,15 @@ class UserController extends Controller
 
         return view('admin.user.show', compact('user'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id): View
     {
         $user = User::find($id);
+        $roles = $this->getRoles(); // Obtener los roles
 
-        return view('admin.user.edit', compact('user'));
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -92,8 +94,8 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'role' => $request->role, // Usar 'role'
         ]);
 
         return Redirect::route('users.index')
@@ -106,5 +108,17 @@ class UserController extends Controller
 
         return Redirect::route('users.index')
             ->with('success', 'Usuario eliminado exitosamente.');
+    }
+
+    /**
+     * Get the roles for the user.
+     */
+    private function getRoles()
+    {
+        return [
+            User::ROLE_ADMINISTRADOR => 'Administrador',
+            User::ROLE_VENTAS => 'Ventas',
+            User::ROLE_USUARIO => 'Usuario',
+        ];
     }
 }

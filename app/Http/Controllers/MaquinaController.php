@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maquina;
+use App\Models\Area;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\MaquinaRequest;
@@ -15,12 +16,12 @@ class MaquinaController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-    {
-        $maquinas = Maquina::paginate();
+{
+    $maquinas = Maquina::with('area')->paginate();
 
-        return view('modules.maquina.index', compact('maquinas'))
-            ->with('i', ($request->input('page', 1) - 1) * $maquinas->perPage());
-    }
+    return view('modules.maquina.index', compact('maquinas'))
+        ->with('i', ($request->input('page', 1) - 1) * $maquinas->perPage());
+}
 
     /**
      * Show the form for creating a new resource.
@@ -28,8 +29,10 @@ class MaquinaController extends Controller
     public function create(): View
     {
         $maquina = new Maquina();
+        $estatusOptions = ['Activa', 'Desactiva', 'Reparación']; // Ejemplo de opciones de estatus
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.maquina.create', compact('maquina'));
+        return view('modules.maquina.create', compact('maquina', 'estatusOptions', 'areas'));
     }
 
     /**
@@ -37,10 +40,16 @@ class MaquinaController extends Controller
      */
     public function store(MaquinaRequest $request): RedirectResponse
     {
-        Maquina::create($request->validated());
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'estatus' => 'required|string|max:255',
+            'id_area' => 'required|exists:areas,id',
+        ]);
+
+        Maquina::create($validatedData);
 
         return Redirect::route('maquinas.index')
-            ->with('success', 'Máquina creado exitosamente.');
+            ->with('success', 'Máquina creada exitosamente.');
     }
 
     /**
@@ -48,7 +57,7 @@ class MaquinaController extends Controller
      */
     public function show($id): View
     {
-        $maquina = Maquina::find($id);
+        $maquina = Maquina::with('area')->find($id);
 
         return view('modules.maquina.show', compact('maquina'));
     }
@@ -59,8 +68,10 @@ class MaquinaController extends Controller
     public function edit($id): View
     {
         $maquina = Maquina::find($id);
+        $estatusOptions = ['Activa', 'Desactiva', 'Reparación']; // Ejemplo de opciones de estatus
+        $areas = Area::all(); // Obtener todas las áreas
 
-        return view('modules.maquina.edit', compact('maquina'));
+        return view('modules.maquina.edit', compact('maquina', 'estatusOptions', 'areas'));
     }
 
     /**
@@ -68,10 +79,16 @@ class MaquinaController extends Controller
      */
     public function update(MaquinaRequest $request, Maquina $maquina): RedirectResponse
     {
-        $maquina->update($request->validated());
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'estatus' => 'required|string|max:255',
+            'id_area' => 'required|exists:areas,id',
+        ]);
+
+        $maquina->update($validatedData);
 
         return Redirect::route('maquinas.index')
-            ->with('success', 'Máquina actualizado exitosamente.');
+            ->with('success', 'Máquina actualizada exitosamente.');
     }
 
     public function destroy($id): RedirectResponse

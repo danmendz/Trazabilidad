@@ -36,7 +36,7 @@ class Maquina extends Model
      */
     public function area()
     {
-        return $this->belongsTo(\App\Models\Area::class, 'id_area', 'id');
+        return $this->belongsTo(Area::class, 'id_area');
     }
     
 }

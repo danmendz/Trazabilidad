@@ -53,16 +53,16 @@
                                     {{ $reportesMaquinado->tiempo_total }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>ID Área:</strong>
-                                    {{ $reportesMaquinado->id_area }}
+                                    <strong>Área:</strong>
+                                    {{ $reportesMaquinado->area->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>ID Máquina:</strong>
-                                    {{ $reportesMaquinado->id_maquina }}
+                                    <strong>Máquina:</strong>
+                                    {{ $reportesMaquinado->maquina->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>ID Operador:</strong>
-                                    {{ $reportesMaquinado->id_operador }}
+                                    <strong>Operador:</strong>
+                                    {{ $reportesMaquinado->operador->nombre }}
                                 </div>
 
                     </div>

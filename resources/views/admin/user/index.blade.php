@@ -35,11 +35,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Name</th>
-									<th >Correo Electrónico</th>
-									<th >Rol</th>
-
+                                        <th>Nombre</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Rol</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,12 +45,11 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $user->name }}</td>
-										<td >{{ $user->email }}</td>
-										<td >{{ $user->role }}</td>
+                                            <td >{{ $user->name }}</td>
+                                            <td >{{ $user->email }}</td>
+                                            <td>{{ $user->role_name }}</td> <!-- Aquí usamos role_name -->
 
-                                            <td>
+                                        <td>
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('users.show', $user->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('users.edit', $user->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
