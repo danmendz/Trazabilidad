@@ -10,6 +10,7 @@
         <div class="form-group mb-2 mb20">
             <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
             <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un estatus') }}</option>
                 @foreach($estatusOptions as $estatus)
                     <option value="{{ $estatus }}" {{ old('estatus', $maquina?->estatus) == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
                 @endforeach
@@ -20,6 +21,7 @@
         <div class="form-group mb-2 mb20">
             <label for="id_area" class="form-label">{{ __('Área') }}</label>
             <select name="id_area" id="id_area" class="form-control @error('id_area') is-invalid @enderror">
+                <option value="">{{ __('Seleccione una área') }}</option>
                 @foreach($areas as $area)
                     <option value="{{ $area->id }}" {{ old('id_area', $maquina?->id_area) == $area->id ? 'selected' : '' }}>{{ $area->nombre }}</option>
                 @endforeach

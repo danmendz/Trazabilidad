@@ -24,6 +24,7 @@
         <div class="form-group mb-2 mb20">
             <label for="turno" class="form-label">{{ __('Turno') }}</label>
             <select name="turno" id="turno" class="form-control @error('turno') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un turno') }}</option>
                 @foreach($turnos as $turno)
                     <option value="{{ $turno }}" {{ old('turno', $reportesMaquinado?->turno) == $turno ? 'selected' : '' }}>{{ $turno }}</option>
                 @endforeach
@@ -34,6 +35,7 @@
             <div class="form-group mb-2 mb20">
                 <label for="accion" class="form-label">{{ __('Acción') }}</label>
                 <select name="accion" id="accion" class="form-control @error('accion') is-invalid @enderror">
+                    <option value="">{{ __('Seleccione una acción') }}</option>
                     @foreach($acciones as $accion)
                         <option value="{{ $accion }}" {{ old('accion', $reportesMaquinado?->accion) == $accion ? 'selected' : '' }}>{{ $accion }}</option>
                     @endforeach
@@ -45,6 +47,7 @@
             <div class="form-group mb-2 mb20">
                 <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
                 <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
+                    <option value="">{{ __('Seleccione un estatus') }}</option>
                     @foreach($estatuses as $estatus)
                         <option value="{{ $estatus }}" {{ old('estatus', $reportesMaquinado?->estatus) == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
                     @endforeach
@@ -58,8 +61,9 @@
             {!! $errors->first('tiempo_total', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_area" class="form-label">{{ __('ID Área') }}</label>
+            <label for="id_area" class="form-label">{{ __('Área') }}</label>
             <select name="id_area" id="id_area" class="form-control @error('id_area') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un área') }}</option>
                 @foreach($areas as $area)
                     <option value="{{ $area->id }}" {{ old('id_area', $reportesMaquinado?->id_area) == $area->id ? 'selected' : '' }}>{{ $area->nombre }}</option>
                 @endforeach
@@ -68,8 +72,9 @@
         </div>
 
         <div class="form-group mb-2 mb20">
-            <label for="id_maquina" class="form-label">{{ __('ID Máquina') }}</label>
+            <label for="id_maquina" class="form-label">{{ __('Máquina') }}</label>
             <select name="id_maquina" id="id_maquina" class="form-control @error('id_maquina') is-invalid @enderror">
+                <option value="">{{ __('Seleccione una máquina') }}</option>
                 @foreach($maquinas as $maquina)
                     <option value="{{ $maquina->id }}" {{ old('id_maquina', $reportesMaquinado?->id_maquina) == $maquina->id ? 'selected' : '' }}>{{ $maquina->nombre }}</option>
                 @endforeach
@@ -78,8 +83,9 @@
         </div>
 
         <div class="form-group mb-2 mb20">
-            <label for="id_operador" class="form-label">{{ __('ID Operador') }}</label>
+            <label for="id_operador" class="form-label">{{ __('Operador') }}</label>
             <select name="id_operador" id="id_operador" class="form-control @error('id_operador') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un operador') }}</option>
                 @foreach($operadores as $operador)
                     <option value="{{ $operador->id }}" {{ old('id_operador', $reportesMaquinado?->id_operador) == $operador->id ? 'selected' : '' }}>{{ $operador->nombre }}</option>
                 @endforeach

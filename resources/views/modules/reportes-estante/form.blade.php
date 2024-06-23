@@ -24,6 +24,7 @@
         <div class="form-group mb-2 mb20">
             <label for="accion" class="form-label">{{ __('Acción') }}</label>
             <select name="accion" id="accion" class="form-control @error('accion') is-invalid @enderror">
+                <option value="">{{ __('Seleccione una acción') }}</option>
                 @foreach($acciones as $accion)
                     <option value="{{ $accion }}" {{ old('accion', $reportesEstante?->accion) == $accion ? 'selected' : '' }}>{{ $accion }}</option>
                 @endforeach
@@ -38,6 +39,7 @@
         <div class="form-group mb-2 mb20">
             <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
             <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un estatus') }}</option>
                 @foreach($estatuses as $estatus)
                     <option value="{{ $estatus }}" {{ old('estatus', $reportesEstante?->estatus) == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
                 @endforeach
@@ -46,8 +48,9 @@
         </div>
 
         <div class="form-group mb-2 mb20">
-            <label for="id_estante" class="form-label">{{ __('ID Estante') }}</label>
+            <label for="id_estante" class="form-label">{{ __('Estante') }}</label>
             <select name="id_estante" id="id_estante" class="form-control @error('id_estante') is-invalid @enderror">
+                <option value="">{{ __('Seleccione un estante') }}</option>
                 @foreach($estantes as $estante)
                     <option value="{{ $estante->id }}" {{ (old('id_estante') == $estante->id || (isset($reportesEstante) && $reportesEstante->id_estante == $estante->id)) ? 'selected' : '' }}>
                         {{ $estante->nombre }}

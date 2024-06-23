@@ -19,6 +19,7 @@
         <div class="form-group mb-2 mb20">
             <label for="role" class="form-label">{{ __('Rol') }}</label>
             <select name="role" class="form-control @error('role') is-invalid @enderror" id="role">
+                <option value="">{{ __('Seleccione un rol') }}</option>
                 @foreach($roles as $role_id => $role_name)
                     <option value="{{ $role_id }}" {{ old('role', $user?->role) == $role_id ? 'selected' : '' }}>
                         {{ $role_name }}
