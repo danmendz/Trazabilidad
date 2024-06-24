@@ -17,9 +17,16 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $users = User::paginate();
+        $role = $request->input('role');
+        $query = User::query();
 
-        return view('admin.user.index', compact('users'))
+        if ($role) {
+            $query->where('role', $role);
+        }
+
+        $users = $query->paginate();
+
+        return view('admin.user.index', compact('users', 'role'))
             ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
     }
 

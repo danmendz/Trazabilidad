@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('codigo_proyecto', 30)->unique();
             $table->string('empresa', 11);
             $table->enum('estatus', ['activo', 'cancelado'])->default('activo');
-            $table->binary('imagen')->nullable();
+            $table->string('imagen')->nullable();
             $table->primary('id');
             $table->timestamps();
         });

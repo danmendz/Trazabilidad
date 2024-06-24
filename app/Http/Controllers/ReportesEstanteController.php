@@ -12,15 +12,56 @@ use App\Models\Estante;
 
 class ReportesEstanteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
         // Cargar la relación 'estante' junto con los datos de reportesEstante
-        $reportesEstantes = ReportesEstante::with('estante')->paginate();
-    
-        return view('modules.reportes-estante.index', compact('reportesEstantes'))
+        // $reportesEstantes = ReportesEstante::with('estante')->paginate();
+
+        $codigo_proyecto = $request->input('codigo_proyecto');
+        $codigo_partida = $request->input('codigo_partida');
+        $accion = $request->input('accion');
+        $fecha_desde = $request->input('fecha_desde');
+        $fecha_hasta = $request->input('fecha_hasta');
+        $nombre_estante = $request->input('nombre_estante');
+
+        $query = ReportesEstante::with('estante');
+
+        if ($codigo_proyecto) {
+            $query->where('codigo_proyecto', 'LIKE', '%' . $codigo_proyecto . '%');
+        }
+
+        if ($codigo_partida) {
+            $query->where('codigo_partida', 'LIKE', '%' . $codigo_partida . '%');
+        }
+
+        if ($accion) {
+            $query->where('accion', $accion);
+        }
+
+        if ($fecha_desde && $fecha_hasta) {
+            $query->whereBetween('fecha', [$fecha_desde, $fecha_hasta]);
+        } elseif ($fecha_desde) {
+            $query->where('fecha', '>=', $fecha_desde);
+        } elseif ($fecha_hasta) {
+            $query->where('fecha', '<=', $fecha_hasta);
+        }
+
+        if ($nombre_estante) {
+            $query->whereHas('estante', function($query) use ($nombre_estante) {
+                $query->where('nombre', 'LIKE', '%' . $nombre_estante . '%');
+            });
+        }
+
+        $reportesEstantes = $query->paginate();
+
+        return view('modules.reportes-estante.index', compact('reportesEstantes', 'codigo_proyecto', 'codigo_partida', 'accion', 'fecha_desde', 'fecha_hasta', 'nombre_estante'))
             ->with('i', ($request->input('page', 1) - 1) * $reportesEstantes->perPage());
     }
 

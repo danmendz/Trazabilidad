@@ -14,15 +14,61 @@ use Illuminate\View\View;
 
 class ReportesMaquinadoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        $reportesMaquinados = ReportesMaquinado::with('area', 'maquina', 'operador')->paginate();
+        // $reportesMaquinados = ReportesMaquinado::with('area', 'maquina', 'operador')->paginate();
 
-        return view('modules.reportes-maquinado.index', compact('reportesMaquinados'))
-            ->with('i', ($request->input('page', 1) - 1) * $reportesMaquinados->perPage());
+        $codigo_proyecto = $request->input('codigo_proyecto');
+        $codigo_partida = $request->input('codigo_partida');
+        $accion = $request->input('accion');
+        $estatus = $request->input('estatus');
+        $fecha_desde = $request->input('fecha_desde');
+        $fecha_hasta = $request->input('fecha_hasta');
+        $nombre_area = $request->input('nombre_area');
+
+        $query = ReportesMaquinado::with('area', 'maquina', 'operador');
+
+        if ($codigo_proyecto) {
+            $query->where('codigo_proyecto', 'LIKE', '%' . $codigo_proyecto . '%');
+        }
+
+        if ($codigo_partida) {
+            $query->where('codigo_partida', 'LIKE', '%' . $codigo_partida . '%');
+        }
+
+        if ($accion) {
+            $query->where('accion', $accion);
+        }
+
+        if ($estatus) {
+            $query->where('estatus', $estatus);
+        }
+
+        if ($fecha_desde && $fecha_hasta) {
+            $query->whereBetween('fecha', [$fecha_desde, $fecha_hasta]);
+        } elseif ($fecha_desde) {
+            $query->where('fecha', '>=', $fecha_desde);
+        } elseif ($fecha_hasta) {
+            $query->where('fecha', '<=', $fecha_hasta);
+        }
+
+        if ($nombre_area) {
+            $query->whereHas('area', function($query) use ($nombre_area) {
+                $query->where('nombre', 'LIKE', '%' . $nombre_area . '%');
+            });
+        }
+
+        $reportesMaquinados = $query->paginate();
+
+        return view('modules.reportes-maquinado.index', compact('reportesMaquinados', 'codigo_proyecto', 'codigo_partida', 'accion', 'estatus', 'fecha_desde', 'fecha_hasta', 'nombre_area'))
+        ->with('i', ($request->input('page', 1) - 1) * $reportesMaquinados->perPage());
     }
 
     /**

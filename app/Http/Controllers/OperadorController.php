@@ -17,9 +17,25 @@ class OperadorController extends Controller
      */
     public function index(Request $request): View
     {
-        $operadores = Operador::with('area')->paginate();
+        // $operadores = Operador::with('area')->paginate();
+        $nombre = $request->input('nombre');
+        $nombre_area = $request->input('nombre_area');
 
-        return view('modules.operador.index', compact('operadores'))
+        $query = Operador::with('area');
+
+        if ($nombre) {
+            $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        }
+
+        if ($nombre_area) {
+            $query->whereHas('area', function($query) use ($nombre_area) {
+                $query->where('nombre', 'LIKE', '%' . $nombre_area . '%');
+            });
+        }
+    
+        $operadores = $query->paginate();
+    
+        return view('modules.operador.index', compact('operadores', 'nombre', 'nombre_area'))
             ->with('i', ($request->input('page', 1) - 1) * $operadores->perPage());
     }
 

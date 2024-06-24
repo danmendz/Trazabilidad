@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->enum('accion', ['entrada', 'salida']);
-            $table->decimal('tiempo_total', 5, 2)->nullable();
+            $table->decimal('tiempo_total', 15, 2)->nullable();
             $table->enum('estatus', ['conforme', 'no conforme'])->default('conforme');
             $table->bigInteger('id_estante')->unsigned();
             $table->foreign('id_estante')->references('id')->on('estantes');

@@ -16,11 +16,13 @@
                                 {{ __('Estantes') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('estantes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear nuevo estante') }}
-                                </a>
-                              </div>
+                            @can('acceder-admin-ventas')
+                                <div class="float-right">
+                                    <a href="{{ route('estantes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                    {{ __('Crear nuevo estante') }}
+                                    </a>
+                                </div>
+                            @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -28,6 +30,21 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
+                    <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{{ route('estantes.index') }}" class="mb-4">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="{{ $nombre }}">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="nombre_area" class="form-control" placeholder="Nombre de Area" value="{{ $nombre_area }}">
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
 
                     <div class="card-body bg-white">
                         <div class="table-responsive">
@@ -49,6 +66,7 @@
 										<td>{{ $estante->area->nombre }}</td> <!-- Mostrar el nombre del área -->
 
                                             <td>
+                                                @can('acceder-admin-ventas')
                                                 <form action="{{ route('estantes.destroy', $estante->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('estantes.show', $estante->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('estantes.edit', $estante->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
@@ -56,6 +74,9 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro de que deseas eliminar el estante?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
+                                                @else 
+                                                <a class="btn btn-sm btn-primary " href="{{ route('estantes.show', $estante->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

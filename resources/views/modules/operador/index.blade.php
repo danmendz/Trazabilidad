@@ -29,6 +29,21 @@
                         </div>
                     @endif
 
+                     <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{{ route('operadores.index') }}" class="mb-4">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="{{ $nombre }}">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="nombre_area" class="form-control" placeholder="Nombre de Area" value="{{ $nombre_area }}">
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="card-body bg-white">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">

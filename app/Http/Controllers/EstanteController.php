@@ -12,15 +12,35 @@ use Illuminate\View\View;
 
 class EstanteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
         // Cargar la relación area con los estantes
-        $estantes = Estante::with('area')->paginate();
+        // $estantes = Estante::with('area')->paginate();
+        $nombre = $request->input('nombre');
+        $nombre_area = $request->input('nombre_area');
 
-        return view('modules.estante.index', compact('estantes'))
+        $query = Estante::with('area');
+
+        if ($nombre) {
+            $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        }
+
+        if ($nombre_area) {
+            $query->whereHas('area', function($query) use ($nombre_area) {
+                $query->where('nombre', 'LIKE', '%' . $nombre_area . '%');
+            });
+        }
+
+        $estantes = $query->paginate();
+
+        return view('modules.estante.index', compact('estantes', 'nombre', 'nombre_area'))
             ->with('i', ($request->input('page', 1) - 1) * $estantes->perPage());
     }
 

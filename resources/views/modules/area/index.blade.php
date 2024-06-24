@@ -16,11 +16,13 @@
                                 {{ __('Áreas') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('areas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear nueva área') }}
-                                </a>
-                              </div>
+                            @can('acceder-admin-ventas')
+                                <div class="float-right">
+                                    <a href="{{ route('areas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                        {{ __('Crear nueva área') }}
+                                    </a>
+                                </div>
+                            @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -49,6 +51,7 @@
 										<td >{{ $area->nombre }}</td>
 
                                             <td>
+                                                @can('acceder-admin-ventas')
                                                 <form action="{{ route('areas.destroy', $area->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('areas.show', $area->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('areas.edit', $area->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
@@ -56,6 +59,9 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro de que deseas eliminar el área?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
+                                                @else
+                                                <a class="btn btn-sm btn-primary " href="{{ route('areas.show', $area->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

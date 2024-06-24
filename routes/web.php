@@ -43,14 +43,15 @@ Route::middleware('can:acceder-admin')->group(function () {
     // Route::middleware('users')->resource('users', UserController::class)->except(['show']); //excluir metodos
 });
 
+Route::resource('maquinas', MaquinaController::class);
+Route::resource('areas', AreaController::class);
+Route::resource('estantes', EstanteController::class);
+Route::resource('reportes-estantes', ReportesEstanteController::class);
+Route::resource('reportes-maquinados', ReportesMaquinadoController::class);
+
 Route::middleware('check.admin.ventas')->group(function () {
     Route::resource('proyectos', ProyectoController::class);
-    Route::resource('maquinas', MaquinaController::class);
-    Route::resource('areas', AreaController::class);
-    Route::resource('estantes', EstanteController::class);
     Route::resource('operadores', OperadorController::class);
-    Route::resource('reportes-estantes', ReportesEstanteController::class);
-    Route::resource('reportes-maquinados', ReportesMaquinadoController::class);
 });
 
 require __DIR__.'/auth.php';

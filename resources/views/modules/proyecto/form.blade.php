@@ -22,7 +22,12 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
-            <input type="file" name="imagen" class="form-control @error('imagen') is-invalid @enderror" id="imagen">
+            @if ($proyecto && $proyecto->imagen)
+                <div class="mb-2">
+                    <img src="{{ asset('images/projects/' . $proyecto->imagen) }}" width="100px" alt="Imagen del Proyecto">
+                </div>
+            @endif
+            <input type="file" name="imagen" class="form-control @error('imagen') is-invalid @enderror" id="imagen" placeholder="Imagen">
             {!! $errors->first('imagen', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
     </div>

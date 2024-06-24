@@ -29,6 +29,23 @@
                         </div>
                     @endif
 
+                    <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{{ route('users.index') }}" class="mb-4">
+                        <div class="form-row">
+                            <div class="col">
+                                <select name="role" class="form-control">
+                                    <option value="">Seleccione Rol</option>
+                                    <option value="1" {{ $role == '1' ? 'selected' : '' }}>Administrador</option>
+                                    <option value="2" {{ $role == '2' ? 'selected' : '' }}>Ventas</option>
+                                    <option value="3" {{ $role == '3' ? 'selected' : '' }}>Usuario</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="card-body bg-white">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">

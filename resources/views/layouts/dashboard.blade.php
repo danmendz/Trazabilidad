@@ -88,12 +88,20 @@
                         <span>Usuarios</span></a>
                 </li>
             @endcan
+            
+            @can('acceder-admin-ventas')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('proyectos.index') }}">
+                        <i class="fas fa-book-open"></i>
+                        <span>Proyectos</span></a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('proyectos.index') }}">
-                    <i class="fas fa-book-open"></i>
-                    <span>Proyectos</span></a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('operadores.index') }}">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Operadores</span></a>
+                </li>
+            @endcan
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('maquinas.index') }}">
@@ -105,12 +113,6 @@
                 <a class="nav-link" href="{{ route('estantes.index') }}">
                     <i class="fas fa-arrow-alt-circle-down"></i>
                     <span>Estantes</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('operadores.index') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Operadores</span></a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->

@@ -17,19 +17,28 @@ class ProyectoController extends Controller
      */
     public function index(Request $request): View
     {
-        $proyectos = Proyecto::paginate();
+        $codigo_proyecto = $request->input('codigo_proyecto');
+        $empresa = $request->input('empresa');
+        $estatus = $request->input('estatus');
+    
+        $query = Proyecto::query();
 
-        return view('modules.proyecto.index', compact('proyectos'))
+        if ($codigo_proyecto) {
+            $query->where('codigo_proyecto', 'LIKE', '%' . $codigo_proyecto . '%');
+        }
+    
+        if ($empresa) {
+            $query->where('empresa', 'LIKE', '%' . $empresa . '%');
+        }
+    
+        if ($estatus) {
+            $query->where('estatus', $estatus);
+        }
+    
+        $proyectos = $query->paginate();
+    
+        return view('modules.proyecto.index', compact('proyectos', 'codigo_proyecto', 'empresa', 'estatus'))
             ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // $rol = Auth::user()->role;
-
-        // if($rol == 1) {
-        //     return view('admin.proyecto.index', compact('proyectos'))
-        //     ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // } elseif ($rol == 2) {
-        //     return view('admin.proyecto.index', compact('proyectos'))
-        //     ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
-        // }
     }
 
     /**
@@ -48,19 +57,24 @@ class ProyectoController extends Controller
      */
     public function store(ProyectoRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'codigo_proyecto' => 'required|string|max:255',
-            'empresa' => 'required|string|max:255',
-            'estatus' => 'required|string|max:255',
-            'imagen' => 'nullable|image',
-
+        Proyecto::create($request->validated());
+        $request->validate([
+            'codigo_proyecto' => 'required', 
+            'empresa' => 'required', 
+            'estatus' => 'required', 
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasFile('imagen')) {
-            $validatedData['imagen'] = $request->file('imagen')->store('imagenes');
+        $input = $request->all();
+
+        if ($imagen = $request->file('imagen')) {
+            $destinationPath = 'images/projects';
+            $profileImage = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($destinationPath, $profileImage);
+            $input['imagen'] = "$profileImage";
         }
 
-        Proyecto::create($validatedData);
+        Proyecto::create($input);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto creado exitosamente.');
@@ -92,18 +106,24 @@ class ProyectoController extends Controller
      */
     public function update(ProyectoRequest $request, Proyecto $proyecto): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'codigo_proyecto' => 'required|string|max:255',
-            'empresa' => 'required|string|max:255',
-            'estatus' => 'required|string|max:255',
-            'imagen' => 'nullable|image',
+        $request->validate([
+            'codigo_proyecto' => 'required', 
+            'empresa' => 'required', 
+            'estatus' => 'required', 
         ]);
 
-        if ($request->hasFile('imagen')) {
-            $validatedData['imagen'] = $request->file('imagen')->store('imagenes');
+        $input = $request->all();
+
+        if ($imagen = $request->file('imagen')) {
+            $destinationPath = 'images/projects';
+            $profileImage = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagen->move($destinationPath, $profileImage);
+            $input['imagen'] = "$profileImage";
+        } else{
+            unset($input['imagen']);
         }
 
-        $proyecto->update($validatedData);
+        $proyecto->update($input);
 
         return Redirect::route('proyectos.index')
             ->with('success', 'Proyecto actualizado exitosamente.');

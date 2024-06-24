@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('turno', ['primero', 'segundo']);
             $table->enum('accion', ['entrada', 'turno terminado', 'pieza terminada']);
             $table->enum('estatus', ['proceso', 'finalizado', 'revisar'])->default('proceso');
-            $table->decimal('tiempo_total', 5, 2)->nullable();
+            $table->decimal('tiempo_total', 15, 2)->nullable();
             $table->bigInteger('id_area')->unsigned();
             $table->bigInteger('id_maquina')->unsigned();
             $table->bigInteger('id_operador')->unsigned();

@@ -29,6 +29,28 @@
                         </div>
                     @endif
 
+                    <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{{ route('proyectos.index') }}" class="mb-4">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" name="codigo_proyecto" class="form-control" placeholder="Código Proyecto" value="{{ $codigo_proyecto }}">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="empresa" class="form-control" placeholder="Empresa" value="{{ $empresa }}">
+                            </div>
+                            <div class="col">
+                                <select name="estatus" class="form-control">
+                                    <option value="">Seleccione Estatus</option>
+                                    <option value="activo" {{ $estatus == 'activo' ? 'selected' : '' }}>Activo</option>
+                                    <option value="cancelado" {{ $estatus == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="card-body bg-white">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -52,7 +74,7 @@
 										<td >{{ $proyecto->codigo_proyecto }}</td>
 										<td >{{ $proyecto->empresa }}</td>
 										<td >{{ $proyecto->estatus }}</td>
-										<td >{{ $proyecto->imagen }}</td>
+										<td ><img src="{{ asset('images/projects/' . $proyecto->imagen) }}" width="100px"></td>
 
                                             <td>
                                                 <form action="{{ route('proyectos.destroy', $proyecto->id) }}" method="POST">
