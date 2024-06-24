@@ -24,7 +24,6 @@
         <div class="form-group mb-2 mb20">
             <label for="turno" class="form-label">{{ __('Turno') }}</label>
             <select name="turno" id="turno" class="form-control @error('turno') is-invalid @enderror">
-                <option value="">{{ __('Seleccione un turno') }}</option>
                 @foreach($turnos as $turno)
                     <option value="{{ $turno }}" {{ old('turno', $reportesMaquinado?->turno) == $turno ? 'selected' : '' }}>{{ $turno }}</option>
                 @endforeach
@@ -35,7 +34,6 @@
             <div class="form-group mb-2 mb20">
                 <label for="accion" class="form-label">{{ __('Acción') }}</label>
                 <select name="accion" id="accion" class="form-control @error('accion') is-invalid @enderror">
-                    <option value="">{{ __('Seleccione una acción') }}</option>
                     @foreach($acciones as $accion)
                         <option value="{{ $accion }}" {{ old('accion', $reportesMaquinado?->accion) == $accion ? 'selected' : '' }}>{{ $accion }}</option>
                     @endforeach
@@ -47,7 +45,6 @@
             <div class="form-group mb-2 mb20">
                 <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
                 <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
-                    <option value="">{{ __('Seleccione un estatus') }}</option>
                     @foreach($estatuses as $estatus)
                         <option value="{{ $estatus }}" {{ old('estatus', $reportesMaquinado?->estatus) == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
                     @endforeach

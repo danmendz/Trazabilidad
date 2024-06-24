@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProyectoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -41,6 +45,11 @@ class ProyectoController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
     }
 
+    public function numeroDeProyectos()
+    {
+        $numeroProyectos = Proyecto::count();
+        return view('admin.index', compact('numeroProyectos'));
+    }
     /**
      * Show the form for creating a new resource.
      */

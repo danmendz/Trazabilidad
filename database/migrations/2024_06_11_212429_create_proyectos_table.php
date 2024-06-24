@@ -15,7 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('codigo_proyecto', 30)->unique();
             $table->string('empresa', 11);
-            $table->enum('estatus', ['activo', 'cancelado'])->default('activo');
+            $table->enum('estatus', ['activo', 'cancelado', 'entregado'])->default('activo');
+            $table->date('fecha_entrega');
             $table->string('imagen')->nullable();
             $table->primary('id');
             $table->timestamps();

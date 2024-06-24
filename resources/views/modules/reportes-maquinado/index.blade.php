@@ -16,11 +16,13 @@
                                 {{ __('Reportes Maquinados') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('reportes-maquinados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear nuevo reporte maquinado') }}
-                                </a>
-                              </div>
+                            @can('acceder-admin-ventas')
+                                <div class="float-right">
+                                    <a href="{{ route('reportes-maquinados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                    {{ __('Crear nuevo reporte maquinado') }}
+                                    </a>
+                                </div>
+                            @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -118,8 +120,28 @@
 										<td >{{ $reportesMaquinado->fecha }}</td>
 										<td >{{ $reportesMaquinado->hora }}</td>
 										<td >{{ $reportesMaquinado->turno }}</td>
-										<td >{{ $reportesMaquinado->accion }}</td>
-										<td >{{ $reportesMaquinado->estatus }}</td>
+										<td >
+                                            <span class="
+                                                @if($reportesMaquinado->accion == 'entrada')
+                                                    border-yellow
+                                                @elseif($reportesMaquinado->accion == 'turno terminado')
+                                                    border-green
+                                                @elseif($reportesMaquinado->accion == 'pieza terminada')
+                                                    border-green
+                                                @endif
+                                            ">
+                                            {{ $reportesMaquinado->accion }}</td>
+										<td >
+                                            <span class="
+                                                @if($reportesMaquinado->estatus == 'proceso')
+                                                    border-yellow
+                                                @elseif($reportesMaquinado->estatus == 'finalizado')
+                                                    border-green
+                                                @elseif($reportesMaquinado->estatus == 'revisar')
+                                                    border-red
+                                                @endif
+                                            ">
+                                            {{ $reportesMaquinado->estatus }}</td>
 										<td >{{ $reportesMaquinado->tiempo_total }}</td>
 										<td >{{ $reportesMaquinado->area->nombre ?? 'N/A' }}</td>
 										<td >{{ $reportesMaquinado->maquina->nombre ?? 'N/A' }}</td>
@@ -136,6 +158,7 @@
                                                 </form>
                                                 @else 
                                                 <a class="btn btn-sm btn-primary " href="{{ route('reportes-maquinados.show', $reportesMaquinado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                <a class="btn btn-sm btn-danger" href="{{ route('reportes-maquinados.edit', $reportesMaquinado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Solicitar revisión') }}</a>
                                                 @endcan
                                             </td>
                                         </tr>

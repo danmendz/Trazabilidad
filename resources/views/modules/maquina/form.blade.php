@@ -10,7 +10,6 @@
         <div class="form-group mb-2 mb20">
             <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
             <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
-                <option value="">{{ __('Seleccione un estatus') }}</option>
                 @foreach($estatusOptions as $estatus)
                     <option value="{{ $estatus }}" {{ old('estatus', $maquina?->estatus) == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
                 @endforeach

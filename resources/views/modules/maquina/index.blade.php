@@ -73,7 +73,17 @@
                                             <td>{{ ++$i }}</td>
                                             
 										<td >{{ $maquina->nombre }}</td>
-										<td >{{ $maquina->estatus }}</td>
+										<td >
+                                            <span class="
+                                                @if($maquina->estatus == 'desactiva')
+                                                    border-red
+                                                @elseif($maquina->estatus == 'activa')
+                                                    border-green
+                                                @elseif($maquina->estatus == 'reparacion')
+                                                    border-yellow
+                                                @endif
+                                            ">
+                                            {{ $maquina->estatus }}</td>
 										<td>{{ $maquina->area ? $maquina->area->nombre : 'Área no asignada' }}</td>
 
                                             <td>

@@ -20,33 +20,33 @@ class MaquinaController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-{
-    // $maquinas = Maquina::with('area')->paginate();
-    $nombre = $request->input('nombre');
-    $nombre_area = $request->input('nombre_area');
-    $estatus = $request->input('estatus');
+    {
+        // $maquinas = Maquina::with('area')->paginate();
+        $nombre = $request->input('nombre');
+        $nombre_area = $request->input('nombre_area');
+        $estatus = $request->input('estatus');
 
-    $query = Maquina::with('area');
+        $query = Maquina::with('area');
 
-    if ($nombre) {
-        $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        if ($nombre) {
+            $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        }
+
+        if ($nombre_area) {
+            $query->whereHas('area', function($query) use ($nombre_area) {
+                $query->where('nombre', 'LIKE', '%' . $nombre_area . '%');
+            });
+        }
+
+        if ($estatus) {
+            $query->where('estatus', $estatus);
+        }
+
+        $maquinas = $query->paginate();
+
+        return view('modules.maquina.index', compact('maquinas', 'nombre', 'nombre_area', 'estatus'))
+        ->with('i', ($request->input('page', 1) - 1) * $maquinas->perPage());
     }
-
-    if ($nombre_area) {
-        $query->whereHas('area', function($query) use ($nombre_area) {
-            $query->where('nombre', 'LIKE', '%' . $nombre_area . '%');
-        });
-    }
-
-    if ($estatus) {
-        $query->where('estatus', $estatus);
-    }
-
-    $maquinas = $query->paginate();
-
-    return view('modules.maquina.index', compact('maquinas', 'nombre', 'nombre_area', 'estatus'))
-    ->with('i', ($request->input('page', 1) - 1) * $maquinas->perPage());
-}
 
     /**
      * Show the form for creating a new resource.

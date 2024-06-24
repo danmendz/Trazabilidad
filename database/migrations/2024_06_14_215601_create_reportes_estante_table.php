@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('accion', ['entrada', 'salida']);
             $table->decimal('tiempo_total', 15, 2)->nullable();
             $table->enum('estatus', ['conforme', 'no conforme'])->default('conforme');
+            $table->string('reviciones', 250);
             $table->bigInteger('id_estante')->unsigned();
             $table->foreign('id_estante')->references('id')->on('estantes');
             $table->timestamps();

@@ -114,9 +114,25 @@
 										<td >{{ $reportesEstante->codigo_partida }}</td>
 										<td >{{ $reportesEstante->fecha }}</td>
 										<td >{{ $reportesEstante->hora }}</td>
-										<td >{{ $reportesEstante->accion }}</td>
+										<td >
+                                            <span class="
+                                                @if($reportesEstante->accion == 'entrada')
+                                                    border-yellow
+                                                @elseif($reportesEstante->accion == 'salida')
+                                                    border-green
+                                                @endif
+                                            ">
+                                        {{ $reportesEstante->accion }}</td>
 										<td >{{ $reportesEstante->tiempo_total }}</td>
-										<td >{{ $reportesEstante->estatus }}</td>
+										<td >
+                                            <span class="
+                                                @if($reportesEstante->estatus == 'no conforme')
+                                                    border-red
+                                                @elseif($reportesEstante->estatus == 'conforme')
+                                                    border-green
+                                                @endif
+                                            ">
+                                            {{ $reportesEstante->estatus }}</td>
 										 <!-- Mostrar el nombre del estante en lugar del ID -->
                                          <td>{{ $reportesEstante->estante->nombre }}</td>
                                             <td>
@@ -130,6 +146,8 @@
                                                 </form>
                                                 @else 
                                                 <a class="btn btn-sm btn-primary " href="{{ route('reportes-estantes.show', $reportesEstante->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                <a class="btn btn-sm btn-danger" href="{{ route('reportes-estantes.edit', $reportesEstante->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Solicitar revisión') }}</a>
+                                                
                                                 @endcan
                                             </td>
                                         </tr>

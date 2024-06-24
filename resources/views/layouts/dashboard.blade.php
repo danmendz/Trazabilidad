@@ -26,6 +26,30 @@
         .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
             display: none; /* Ocultar el div */
         }
+
+        .border-red {
+            border: 2px solid red;
+            padding: 2px 4px;
+            border-radius: 4px;
+            background-color: red;
+            color: white;
+        }
+
+        .border-yellow {
+            border: 2px solid yellow;
+            padding: 2px 4px;
+            border-radius: 4px;
+            background-color: yellow;
+        }
+
+        .border-green {
+            border: 2px solid #4dff00;
+            padding: 2px 4px;
+            border-radius: 4px;
+            background-color: #4dff00;
+            color: white;
+        }
+        
     </style>
 
 </head>
@@ -90,18 +114,19 @@
             @endcan
             
             @can('acceder-admin-ventas')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('proyectos.index') }}">
-                        <i class="fas fa-book-open"></i>
-                        <span>Proyectos</span></a>
-                </li>
-
+            
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('operadores.index') }}">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Operadores</span></a>
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Operadores</span></a>
                 </li>
             @endcan
+                
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('proyectos.index') }}">
+                    <i class="fas fa-book-open"></i>
+                    <span>Proyectos</span></a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('maquinas.index') }}">
@@ -143,16 +168,38 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('reportes-maquinados.index') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportsM"
+                    aria-expanded="true" aria-controls="collapseReportsM">
                     <i class="fas fa-chart-pie"></i>
-                    <span>Reportes maquinado</span></a>
-            </li>
+                    <span>Reportes maquinado</span>
+                </a>
+                <div id="collapseReportsM" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar</h6>
+                        <a class="collapse-item" href="{{ route('reportes-maquinados.index') }}">Todo</a>
+                        <a class="collapse-item" href="">Entradas</a>
+                        <a class="collapse-item" href="">Salidas</a>
+                    </div>
+                </div>
+            </li> 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('reportes-estantes.index') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportsE"
+                    aria-expanded="true" aria-controls="collapseReportsE">
                     <i class="fas fa-chart-pie"></i>
-                    <span>Reportes estante</span></a>
-            </li>
+                    <span>Reportes estante</span>
+                </a>
+                <div id="collapseReportsE" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar</h6>
+                        <a class="collapse-item" href="{{ route('reportes-estantes.index') }}">Todo</a>
+                        <a class="collapse-item" href="">Entradas</a>
+                        <a class="collapse-item" href="">Salidas</a>
+                    </div>
+                </div>
+            </li> 
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
