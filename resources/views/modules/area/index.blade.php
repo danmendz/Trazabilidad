@@ -49,14 +49,23 @@
 										<td >{{ $area->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('areas.destroy', $area->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('areas.show', $area->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('areas.edit', $area->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
+                                                @can('acceder-admin-ventas')
+                                                    <form action="{{ route('areas.destroy', $area->id) }}" method="POST">
+                                                        <a class="btn btn-sm btn-primary" href="{{ route('areas.show', $area->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                        
+                                                        <!-- Botón Edit -->
+                                                        <a class="btn btn-sm btn-success" href="{{ route('areas.edit', $area->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                        
+                                                        <!-- Botón Delete -->
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    </form>
+                                                @else
+                                                    <!-- Si no tiene permiso, solo mostrar el botón de Show -->
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('areas.show', $area->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                @endcan
+                                            </td>                                        
                                         </tr>
                                     @endforeach
                                 </tbody>

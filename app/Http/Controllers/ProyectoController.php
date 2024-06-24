@@ -15,13 +15,40 @@ class ProyectoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
-    {
-        $proyectos = Proyecto::paginate();
+    // public function index(Request $request): View
+    // {
+    //     $proyectos = Proyecto::paginate();
 
-        return view('modules.proyecto.index', compact('proyectos'))
-            ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
+    //     return view('modules.proyecto.index', compact('proyectos'))
+    //         ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
+    // }
+
+    public function index(Request $request): View
+{
+    $codigo_proyecto = $request->input('codigo_proyecto');
+    $empresa = $request->input('empresa');
+    $estatus = $request->input('estatus');
+
+    $query = Proyecto::query();
+
+    if ($codigo_proyecto) {
+        $query->where('codigo_proyecto', 'LIKE', '%' . $codigo_proyecto . '%');
     }
+
+    if ($empresa) {
+        $query->where('empresa', 'LIKE', '%' . $empresa . '%');
+    }
+
+    if ($estatus) {
+        $query->where('estatus', $estatus);
+    }
+
+    $proyectos = $query->paginate();
+
+    return view('modules.proyecto.index', compact('proyectos', 'codigo_proyecto', 'empresa', 'estatus'))
+        ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
+}
+
 
     /**
      * Show the form for creating a new resource.

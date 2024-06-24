@@ -11,6 +11,10 @@ use Illuminate\View\View;
 
 class AreaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */

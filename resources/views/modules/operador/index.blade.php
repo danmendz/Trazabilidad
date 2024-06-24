@@ -23,11 +23,27 @@
                               </div>
                         </div>
                     </div>
+
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success m-4">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
+                    <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{{ route('operadores.index') }}" class="mb-4">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="{{ $nombre }}">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="id_area" class="form-control" placeholder="ID Area" value="{{ $id_area }}">
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
 
                     <div class="card-body bg-white">
                         <div class="table-responsive">
@@ -35,10 +51,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Nombre</th>
-									<th >Id Area</th>
-
+                                        <th>Nombre</th>
+                                        <th>ID Area</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -46,13 +60,11 @@
                                     @foreach ($operadores as $operadore)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $operadore->nombre }}</td>
-										<td >{{ $operadore->id_area }}</td>
-
+                                            <td>{{ $operadore->nombre }}</td>
+                                            <td>{{ $operadore->id_area }}</td>
                                             <td>
                                                 <form action="{{ route('operadores.destroy', $operadore->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('operadores.show', $operadore->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('operadores.show', $operadore->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('operadores.edit', $operadore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')

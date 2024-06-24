@@ -11,14 +11,36 @@ use Illuminate\View\View;
 
 class MaquinaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        $maquinas = Maquina::paginate();
+        $nombre = $request->input('nombre');
+        $id_area = $request->input('id_area');
+        $estatus = $request->input('estatus');
 
-        return view('modules.maquina.index', compact('maquinas'))
+        $query = Maquina::query();
+
+        if ($nombre) {
+            $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        }
+
+        if ($id_area) {
+            $query->where('id_area', $id_area);
+        }
+
+        if ($estatus) {
+            $query->where('estatus', $estatus);
+        }
+
+        $maquinas = $query->paginate();
+
+        return view('modules.maquina.index', compact('maquinas', 'nombre', 'id_area', 'estatus'))
             ->with('i', ($request->input('page', 1) - 1) * $maquinas->perPage());
     }
 

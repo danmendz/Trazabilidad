@@ -11,14 +11,39 @@ use Illuminate\View\View;
 
 class EstanteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:acceder-admin-ventas')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */
+    // public function index(Request $request): View
+    // {
+    //     $estantes = Estante::paginate();
+
+    //     return view('modules.estante.index', compact('estantes'))
+    //         ->with('i', ($request->input('page', 1) - 1) * $estantes->perPage());
+    // }
+
     public function index(Request $request): View
     {
-        $estantes = Estante::paginate();
+        $nombre = $request->input('nombre');
+        $id_area = $request->input('id_area');
 
-        return view('modules.estante.index', compact('estantes'))
+        $query = Estante::query();
+
+        if ($nombre) {
+            $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+        }
+
+        if ($id_area) {
+            $query->where('id_area', $id_area);
+        }
+
+        $estantes = $query->paginate();
+
+        return view('modules.estante.index', compact('estantes', 'nombre', 'id_area'))
             ->with('i', ($request->input('page', 1) - 1) * $estantes->perPage());
     }
 
