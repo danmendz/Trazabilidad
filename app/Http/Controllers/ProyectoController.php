@@ -38,7 +38,7 @@ class ProyectoController extends Controller
     public function create(): View
     {
         $proyecto = new Proyecto();
-        $estatusOptions = ['Activa', 'Cancelado']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['Activo', 'Cancelado']; // Ejemplo de opciones de estatus
 
         return view('modules.proyecto.create', compact('proyecto', 'estatusOptions'));
     }
@@ -82,7 +82,7 @@ class ProyectoController extends Controller
     public function edit($id): View
     {
         $proyecto = Proyecto::findOrFail($id);
-        $estatusOptions = ['Activa', 'Cancelado']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['Activo', 'Cancelado']; // Ejemplo de opciones de estatus
 
         return view('modules.proyecto.edit', compact('proyecto', 'estatusOptions'));
     }
