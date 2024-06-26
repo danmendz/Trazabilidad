@@ -54,7 +54,7 @@ class MaquinaController extends Controller
     public function create(): View
     {
         $maquina = new Maquina();
-        $estatusOptions = ['Activa', 'Desactiva', 'Reparación']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['activa', 'desactiva', 'reparacion']; // Ejemplo de opciones de estatus
         $areas = Area::all(); // Obtener todas las áreas
 
         return view('modules.maquina.create', compact('maquina', 'estatusOptions', 'areas'));
@@ -93,7 +93,7 @@ class MaquinaController extends Controller
     public function edit($id): View
     {
         $maquina = Maquina::find($id);
-        $estatusOptions = ['Activa', 'Desactiva', 'Reparación']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['activa', 'desactiva', 'reparacion']; // Ejemplo de opciones de estatus
         $areas = Area::all(); // Obtener todas las áreas
 
         return view('modules.maquina.edit', compact('maquina', 'estatusOptions', 'areas'));

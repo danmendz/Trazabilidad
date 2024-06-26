@@ -71,8 +71,8 @@ class ReportesEstanteController extends Controller
     public function create(): View
     {
         $estantes = Estante::all();
-        $acciones = ['Entrada', 'Salida'];
-        $estatuses = ['Conforme', 'No conforme'];
+        $acciones = ['entrada', 'salida'];
+        $estatuses = ['conforme', 'no conforme'];
 
         $reportesEstante = new ReportesEstante();
 
@@ -108,8 +108,8 @@ class ReportesEstanteController extends Controller
         $reportesEstante = ReportesEstante::find($id);
 
         $estantes = Estante::all();
-        $acciones = ['Entrada', 'Salida'];
-        $estatuses = ['Conforme', 'No conforme'];
+        $acciones = ['entrada', 'salida'];
+        $estatuses = ['conforme', 'no conforme'];
 
         return view('modules.reportes-estante.edit', compact('reportesEstante', 'estantes', 'acciones', 'estatuses'));
     }

@@ -81,9 +81,9 @@ class ReportesMaquinadoController extends Controller
         $operadores = Operador::all();
         
         // Definir las listas de valores para Turno, Acción y Estatus
-        $turnos = ['Primero', 'Segundo'];
-        $acciones = ['Entrada', 'Turno terminado', 'Pieza terminada'];
-        $estatuses = ['Proceso', 'Finalizado', 'Revisar'];
+        $turnos = ['primero', 'segundo'];
+        $acciones = ['entrada', 'turno terminado', 'pieza terminada'];
+        $estatuses = ['proceso', 'finalizado', 'revisar'];
     
         $reportesMaquinado = new ReportesMaquinado();
     
@@ -123,9 +123,9 @@ class ReportesMaquinadoController extends Controller
         $operadores = Operador::all();
         
         // Definir las listas de valores para Turno, Acción y Estatus
-        $turnos = ['Primero', 'Segundo'];
-        $acciones = ['Entrada', 'Turno terminado', 'Pieza terminada'];
-        $estatuses = ['Proceso', 'Finalizado', 'Revisar'];
+        $turnos = ['primero', 'segundo'];
+        $acciones = ['entrada', 'turno terminado', 'pieza terminada'];
+        $estatuses = ['proceso', 'finalizado', 'revisar'];
     
         return view('modules.reportes-maquinado.edit', compact('reportesMaquinado', 'areas', 'maquinas', 'operadores', 'turnos', 'acciones', 'estatuses'));
     }
