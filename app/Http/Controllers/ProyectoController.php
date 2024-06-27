@@ -44,12 +44,6 @@ class ProyectoController extends Controller
         return view('modules.proyecto.index', compact('proyectos', 'codigo_proyecto', 'empresa', 'estatus'))
             ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
     }
-
-    public function numeroDeProyectos()
-    {
-        $numeroProyectos = Proyecto::count();
-        return view('admin.index', compact('numeroProyectos'));
-    }
     /**
      * Show the form for creating a new resource.
      */

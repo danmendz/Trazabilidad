@@ -71,6 +71,15 @@ class ReportesMaquinadoController extends Controller
         ->with('i', ($request->input('page', 1) - 1) * $reportesMaquinados->perPage());
     }
 
+    public function registrosPorRevisar(Request $request)
+    {
+        $query = ReportesMaquinado::with('area', 'maquina', 'operador')->where('estatus', 'revisar');
+        $reportesPorRevisar = $query->paginate();
+
+        return view('admin.index', compact('reportesPorRevisar'))
+        ->with('i', ($request->input('page', 1) - 1) * $reportesPorRevisar->perPage());
+    }
+
     /**
      * Show the form for creating a new resource.
      */

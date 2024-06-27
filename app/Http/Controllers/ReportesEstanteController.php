@@ -72,7 +72,7 @@ class ReportesEstanteController extends Controller
     {
         $estantes = Estante::all();
         $acciones = ['Entrada', 'Salida'];
-        $estatuses = ['Conforme', 'No conforme'];
+        $estatuses = ['Conforme', 'No conforme', 'Revisar'];
 
         $reportesEstante = new ReportesEstante();
 
@@ -109,7 +109,7 @@ class ReportesEstanteController extends Controller
 
         $estantes = Estante::all();
         $acciones = ['Entrada', 'Salida'];
-        $estatuses = ['Conforme', 'No conforme'];
+        $estatuses = ['Conforme', 'No conforme', 'Revisar'];
 
         return view('modules.reportes-estante.edit', compact('reportesEstante', 'estantes', 'acciones', 'estatuses'));
     }

@@ -38,6 +38,7 @@ Route::middleware('can:acceder-ventas')->group(function () {
 
 Route::middleware('can:acceder-admin')->group(function () {
     Route::get('/admin', [UserController::class, 'admin'])->name('admin.index');
+    Route::get('/revisar', [ReportesMaquinadoController::class, 'registrosPorRevisar'])->name('revisar.index');
     Route::middleware('users')->resource('users', UserController::class);
     // Route::middleware('users')->resource('users', UserController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']); //solamente para
     // Route::middleware('users')->resource('users', UserController::class)->except(['show']); //excluir metodos

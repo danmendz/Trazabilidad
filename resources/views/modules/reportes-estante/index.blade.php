@@ -130,6 +130,8 @@
                                                     border-red
                                                 @elseif($reportesEstante->estatus == 'conforme')
                                                     border-green
+                                                @elseif($reportesEstante->estatus == 'revisar')
+                                                    border-red
                                                 @endif
                                             ">
                                             {{ $reportesEstante->estatus }}</td>

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ReportesEstante;
+use App\Models\ReportesMaquinado;
+use App\Models\Proyecto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\ReportesMaquinadoController;
 use Illuminate\View\View;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -42,9 +46,19 @@ class UserController extends Controller
 
     public function admin()
     {
-        return view('admin.index');
-    }
+        $salidasEstante = ReportesEstante::where('accion', 'salida')->count();
+        $salidasMaquinado = ReportesMaquinado::where(function($query) {
+            $query->where('accion', 'turno terminado')
+                ->orWhere('accion', 'pieza terminada');
+        })->count();
+        $revisarEstante = ReportesEstante::where('estatus', 'revisar')->count();
+        $revisarMaquinado = ReportesMaquinado::where('estatus', 'revisar')->count();
+        $revisarRegistros = $revisarEstante + $revisarMaquinado;
 
+        $numeroProyectos = Proyecto::count();
+
+        return view('admin.index', compact('numeroProyectos', 'salidasEstante', 'salidasMaquinado', 'revisarRegistros'));
+    }
     /**
      * Show the form for creating a new resource.
      */
