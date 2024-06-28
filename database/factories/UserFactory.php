@@ -43,24 +43,24 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function administrator(): static
+    public function administrador(): static
     {
         return $this->state(fn (array $attributes) => [
            'role' =>  User::ROLE_ADMINISTRADOR
         ]);
     }
 
-    public function trabajador(): static
+    public function ventas(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role' =>  User::ROLE_TRABAJADOR
+            'role' =>  User::ROLE_VENTAS
         ]);
     }
 
     public function usuario(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role' =>  User::ROLE_USUARIO
+            'role' =>  User::ROLE_OPERADOR
         ]);
     }
 }

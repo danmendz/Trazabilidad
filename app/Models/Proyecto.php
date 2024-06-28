@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $codigo_proyecto
  * @property $empresa
  * @property $estatus
+ * @property $fecha_entrega
  * @property $imagen
  * @property $created_at
  * @property $updated_at
@@ -28,7 +29,7 @@ class Proyecto extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['codigo_proyecto', 'empresa', 'estatus', 'imagen'];
+    protected $fillable = ['codigo_proyecto', 'empresa', 'estatus', 'fecha_entrega', 'imagen'];
 
 
 }

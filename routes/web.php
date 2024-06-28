@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('can:acceder-usuario')->group(function () {
-    Route::get('/usuario', [UserController::class, 'usuario'])->name('usuario.index');
+Route::middleware('can:acceder-operador')->group(function () {
+    Route::get('/operador', [UserController::class, 'operador'])->name('operador.index');
 });
 
 Route::middleware('can:acceder-ventas')->group(function () {

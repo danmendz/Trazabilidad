@@ -33,8 +33,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.index');
         } elseif (Auth::user()->role === User::ROLE_VENTAS ){
             return redirect()->route('ventas.index');
-        }elseif (Auth::user()->role === User::ROLE_USUARIO ){
-            return redirect()->route('usuario.index');
+        }elseif (Auth::user()->role === User::ROLE_OPERADOR ){
+            return redirect()->route('operador.index');
         }else{
             return redirect()->route('login');
         }

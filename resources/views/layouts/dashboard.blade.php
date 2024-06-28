@@ -74,7 +74,7 @@
         @endauth
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('pagina-principal') }}">
                 <div style="background-color: #ffff; width: 100%; heigth: 100%; border-radius: 5px;">
                     <div class="sidebar-brand-icon">
                     <!-- rotate-n-15 -->
@@ -91,7 +91,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 
-                <a class="nav-link" href="{{ route('pagina-principal') }}">
+                <a class="nav-link" href="{{route('admin.index')}}">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span></a>
             </li>

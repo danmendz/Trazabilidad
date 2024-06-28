@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property $turno
  * @property $accion
  * @property $estatus
+ * @property $reviciones
  * @property $tiempo_total
  * @property $id_area
  * @property $id_maquina
@@ -41,7 +42,7 @@ class ReportesMaquinado extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['codigo_proyecto', 'codigo_partida', 'fecha', 'hora', 'turno', 'accion', 'estatus', 'tiempo_total', 'id_area', 'id_maquina', 'id_operador'];
+    protected $fillable = ['codigo_proyecto', 'codigo_partida', 'fecha', 'hora', 'turno', 'accion', 'estatus', 'reviciones', 'tiempo_total', 'id_area', 'id_maquina', 'id_operador'];
 
 
     /**

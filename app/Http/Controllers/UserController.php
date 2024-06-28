@@ -34,9 +34,9 @@ class UserController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
     }
 
-    public function usuario()
+    public function operador()
     {
-        return view('usuario.index');
+        return view('operador.index');
     }
 
     public function ventas()
@@ -139,7 +139,7 @@ class UserController extends Controller
         return [
             User::ROLE_ADMINISTRADOR => 'Administrador',
             User::ROLE_VENTAS => 'Ventas',
-            User::ROLE_USUARIO => 'Usuario',
+            User::ROLE_OPERADOR => 'Operador',
         ];
     }
 }

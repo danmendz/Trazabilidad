@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $accion
  * @property $tiempo_total
  * @property $estatus
+ * @property $reviciones
  * @property $id_estante
  * @property $created_at
  * @property $updated_at
@@ -34,7 +35,7 @@ class ReportesEstante extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['codigo_proyecto', 'codigo_partida', 'fecha', 'hora', 'accion', 'tiempo_total', 'estatus', 'id_estante'];
+    protected $fillable = ['codigo_proyecto', 'codigo_partida', 'fecha', 'hora', 'accion', 'tiempo_total', 'estatus', 'reviciones', 'id_estante'];
 
 
     /**

@@ -24,6 +24,7 @@ class ProyectoRequest extends FormRequest
         return [
 			'codigo_proyecto' => 'required|string',
 			'empresa' => 'required|string',
+			'fecha_entrega' => 'required',
 			'estatus' => 'required',
         ];
     }

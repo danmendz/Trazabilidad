@@ -32,8 +32,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role === User::ROLE_VENTAS;
         });
 
-        Gate::define('acceder-usuario', function ($user){
-            return $user->role === User::ROLE_USUARIO;
+        Gate::define('acceder-operador', function ($user){
+            return $user->role === User::ROLE_OPERADOR;
         });
 
         Gate::define('acceder-admin-ventas', function ($user) {

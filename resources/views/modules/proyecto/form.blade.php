@@ -11,6 +11,11 @@
             {!! $errors->first('empresa', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
+            <label for="fecha_entrega" class="form-label">{{ __('Fecha de entrega') }}</label>
+            <input type="date" name="fecha_entrega" class="form-control @error('fecha_entrega') is-invalid @enderror" value="{{ old('fecha_entrega', $proyecto->fecha_entrega ?? '') }}" id="fecha_entrega" placeholder="fecha_entrega">
+            {!! $errors->first('fecha_entrega', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
             <label for="estatus" class="form-label">{{ __('Estatus') }}</label>
             <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror">
                 @foreach($estatusOptions as $estatus)

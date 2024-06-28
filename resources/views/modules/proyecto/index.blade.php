@@ -31,27 +31,52 @@
                         </div>
                     @endif
 
-                    <!-- Formulario de búsqueda -->
-                    <form method="GET" action="{{ route('proyectos.index') }}" class="mb-4">
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="text" name="codigo_proyecto" class="form-control" placeholder="Código Proyecto" value="{{ $codigo_proyecto }}">
+                    <!-- Acordeón de filtros -->
+                    <div id="accordionFilters" class="mb-4">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="text-decoration: none; font-weight: bold; padding: 0; font-size: 1rem;">
+                                        <i class="fas fa-search"></i>
+                                        Filtros de búsqueda
+                                    </button>
+                                </h5>
                             </div>
-                            <div class="col">
-                                <input type="text" name="empresa" class="form-control" placeholder="Empresa" value="{{ $empresa }}">
-                            </div>
-                            <div class="col">
-                                <select name="estatus" class="form-control">
-                                    <option value="">Seleccione Estatus</option>
-                                    <option value="activo" {{ $estatus == 'activo' ? 'selected' : '' }}>Activo</option>
-                                    <option value="cancelado" {{ $estatus == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary">Buscar</button>
+                    
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFilters">
+                                <div class="card-body">
+                                    <form method="GET" action="{{ route('proyectos.index') }}" class="mb-4">
+                                        <div class="form-row mb-2">
+                                            <div class="col-md-4">
+                                                <input type="text" name="codigo_proyecto" class="form-control" placeholder="Código Proyecto" value="{{ $codigo_proyecto }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" name="empresa" class="form-control" placeholder="Empresa" value="{{ $empresa }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select name="estatus" class="form-control">
+                                                    <option value="">Seleccione Estatus</option>
+                                                    <option value="activo" {{ $estatus == 'activo' ? 'selected' : '' }}>Activo</option>
+                                                    <option value="cancelado" {{ $estatus == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-2">
+                                            <div class="col-md-4">
+                                                <input type="date" name="fecha_desde" class="form-control" value="{{ $fecha_desde }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="date" name="fecha_hasta" class="form-control" value="{{ $fecha_hasta }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn-primary">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>                    
 
                     <div class="card-body bg-white">
                         <div class="table-responsive">
@@ -62,6 +87,7 @@
                                         
 									<th >Código Proyecto</th>
 									<th >Empresa</th>
+									<th >Fecha de entrega</th>
 									<th >Estatus</th>
 									<th >Imagen</th>
 
@@ -75,6 +101,7 @@
                                             
 										<td >{{ $proyecto->codigo_proyecto }}</td>
 										<td >{{ $proyecto->empresa }}</td>
+                                        <td >{{ $proyecto->fecha_entrega }}</td>
 										<td >
                                             <span class="
                                                 @if($proyecto->estatus == 'cancelado')
@@ -83,7 +110,8 @@
                                                     border-green
                                                 @endif
                                             ">
-                                            {{ $proyecto->estatus }}</td>
+                                            {{ $proyecto->estatus }}
+                                        </td>
 										<td ><img src="{{ asset('images/projects/' . $proyecto->imagen) }}" width="100px"></td>
 
                                             <td>

@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProyectoRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,8 @@ class ProyectoController extends Controller
     public function index(Request $request): View
     {
         $codigo_proyecto = $request->input('codigo_proyecto');
+        $fecha_desde = $request->input('fecha_desde');
+        $fecha_hasta = $request->input('fecha_hasta');
         $empresa = $request->input('empresa');
         $estatus = $request->input('estatus');
     
@@ -38,10 +41,18 @@ class ProyectoController extends Controller
         if ($estatus) {
             $query->where('estatus', $estatus);
         }
+
+        if ($fecha_desde && $fecha_hasta) {
+            $query->whereBetween('fecha_entrega', [$fecha_desde, $fecha_hasta]);
+        } elseif ($fecha_desde) {
+            $query->where('fecha_entrega', '>=', $fecha_desde);
+        } elseif ($fecha_hasta) {
+            $query->where('fecha_entrega', '<=', $fecha_hasta);
+        }
     
         $proyectos = $query->paginate();
     
-        return view('modules.proyecto.index', compact('proyectos', 'codigo_proyecto', 'empresa', 'estatus'))
+        return view('modules.proyecto.index', compact('proyectos', 'codigo_proyecto', 'empresa', 'estatus', 'fecha_desde', 'fecha_hasta'))
             ->with('i', ($request->input('page', 1) - 1) * $proyectos->perPage());
     }
     /**
@@ -50,7 +61,7 @@ class ProyectoController extends Controller
     public function create(): View
     {
         $proyecto = new Proyecto();
-        $estatusOptions = ['Activo', 'Cancelado']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['activo', 'cancelado', 'entregado']; // Ejemplo de opciones de estatus
 
         return view('modules.proyecto.create', compact('proyecto', 'estatusOptions'));
     }
@@ -60,10 +71,10 @@ class ProyectoController extends Controller
      */
     public function store(ProyectoRequest $request): RedirectResponse
     {
-        Proyecto::create($request->validated());
         $request->validate([
-            'codigo_proyecto' => 'required', 
+            'codigo_proyecto' => 'required|unique:proyectos,codigo_proyecto', 
             'empresa' => 'required', 
+            'fecha_entrega' => 'required|date',
             'estatus' => 'required', 
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -99,7 +110,8 @@ class ProyectoController extends Controller
     public function edit($id): View
     {
         $proyecto = Proyecto::findOrFail($id);
-        $estatusOptions = ['Activo', 'Cancelado']; // Ejemplo de opciones de estatus
+        $estatusOptions = ['activo', 'cancelado', 'entregado']; // Ejemplo de opciones de estatus
+
 
         return view('modules.proyecto.edit', compact('proyecto', 'estatusOptions'));
     }
@@ -112,7 +124,8 @@ class ProyectoController extends Controller
         $request->validate([
             'codigo_proyecto' => 'required', 
             'empresa' => 'required', 
-            'estatus' => 'required', 
+            'fecha_entrega' => 'required',
+            'estatus' => 'required',
         ]);
 
         $input = $request->all();

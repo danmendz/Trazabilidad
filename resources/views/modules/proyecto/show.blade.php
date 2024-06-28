@@ -29,6 +29,10 @@
                                     {{ $proyecto->empresa }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
+                                    <strong>Fecha de entrega:</strong>
+                                    {{ $proyecto->fecha_entrega }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
                                     <strong>Estatus:</strong>
                                     {{ $proyecto->estatus }}
                                 </div>

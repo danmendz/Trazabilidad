@@ -16,7 +16,7 @@ class User extends Authenticatable
 
     const ROLE_ADMINISTRADOR = 1;
     const ROLE_VENTAS = 2;
-    const ROLE_USUARIO = 3;
+    const ROLE_OPERADOR = 3;
 
     //protected $perPage = 20;
     /**
@@ -70,7 +70,7 @@ class User extends Authenticatable
         $roles = [
             self::ROLE_ADMINISTRADOR => 'Administrador',
             self::ROLE_VENTAS => 'Ventas',
-            self::ROLE_USUARIO => 'Usuario',
+            self::ROLE_OPERADOR => 'Operador',
         ];
 
         return $roles[$this->role] ?? 'Desconocido';
